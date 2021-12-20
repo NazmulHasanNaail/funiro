@@ -116,71 +116,66 @@ function funiro_content_width() {
 }
 add_action( 'after_setup_theme', 'funiro_content_width', 0 );
 
+// Global variables define
+define('FUNIRO_TEMPLATE_DIR_URI', get_template_directory_uri());
+define('FUNIRO_TEMPLATE_DIR', get_template_directory());
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function funiro_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'funiro' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'funiro' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'funiro_widgets_init' );
+
+require ( FUNIRO_TEMPLATE_DIR . '/inc/widgets/sidebars.php');
 
 /**
  * Enqueue scripts and styles.
  */
-function funiro_scripts() {
-	wp_enqueue_style( 'funiro-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'funiro-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'funiro-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'funiro_scripts' );
+require ( FUNIRO_TEMPLATE_DIR . '/inc/scripts/scripts.php');
 
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+require ( FUNIRO_TEMPLATE_DIR . '/inc/custom-header.php');
+/**
+ * Implement the Breadcrumbs feature.
+ */
+require ( FUNIRO_TEMPLATE_DIR . '/inc/breadcrumbs/breadcrumbs.php');
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require ( FUNIRO_TEMPLATE_DIR . '/inc/template-tags.php');
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+require ( FUNIRO_TEMPLATE_DIR . '/inc/template-functions.php');
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/customizer.php');
 
 /**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
+	require ( FUNIRO_TEMPLATE_DIR . '/inc/jetpack.php');
 }
 
 /**
  * Load WooCommerce compatibility file.
  */
 if ( class_exists( 'WooCommerce' ) ) {
-	require get_template_directory() . '/inc/woocommerce.php';
+	require ( FUNIRO_TEMPLATE_DIR . '/inc/woocommerce.php');
 }
+
+
+//helper function 
+/* Excerpt Length Limit Fuctions */
+function funiro_string_limit_words($string, $word_limit) {
+	$words = explode(' ', $string, ($word_limit + 1));
+	if(count($words) > $word_limit)
+	array_pop($words);
+	return implode(' ', $words);
+} 
