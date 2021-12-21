@@ -20,8 +20,8 @@ function funiro_woocommerce_setup() {
 	add_theme_support(
 		'woocommerce',
 		array(
-			'thumbnail_image_width' => 150,
-			'single_image_width'    => 300,
+			'thumbnail_image_width' => 285,
+			'single_image_width'    => 350,
 			'product_grid'          => array(
 				'default_rows'    => 3,
 				'min_rows'        => 1,
@@ -92,8 +92,8 @@ add_filter( 'body_class', 'funiro_woocommerce_active_body_class' );
  */
 function funiro_woocommerce_related_products_args( $args ) {
 	$defaults = array(
-		'posts_per_page' => 3,
-		'columns'        => 3,
+		'posts_per_page' => 4,
+		'columns'        => 4,
 	);
 
 	$args = wp_parse_args( $defaults, $args );
@@ -225,3 +225,89 @@ if ( ! function_exists( 'funiro_woocommerce_header_cart' ) ) {
 		<?php
 	}
 }
+
+
+
+
+
+/**
+ * Adding the excerpt after product title
+ *
+ * @link https://code.tutsplus.com/tutorials/woocommerce-adding-the-product-short-description-to-archive-pages--cms-25435
+ */
+function funiro_excerpt_in_product_archives() {
+    the_excerpt();
+}
+add_action( 'woocommerce_after_shop_loop_item_title', 'funiro_excerpt_in_product_archives', 9);
+
+/**
+ * Display the Woocommerce Discount Percentage on the Sale Badge for variable products and single products
+ *
+ * @link https://wpsimplehacks.com/how-to-display-the-discount-percentage-on-the-sale-badge/
+ */
+function display_percentage_on_sale_badge( $html, $post, $product ) {
+
+  if( $product->is_type('variable')){
+      $percentages = [];
+
+      // This will get all the variation prices and loop throughout them
+      $prices = $product->get_variation_prices();
+
+      foreach( $prices['price'] as $key => $price ){
+          // Only on sale variations
+          if( $prices['regular_price'][$key] !== $price ){
+              // Calculate and set in the array the percentage for each variation on sale
+              $percentages[] = round( 100 - ( floatval($prices['sale_price'][$key]) / floatval($prices['regular_price'][$key]) * 100 ) );
+          }
+      }
+      // Displays maximum discount value
+      $percentage = max($percentages) . '%';
+
+  } elseif( $product->is_type('grouped') ){
+      $percentages = [];
+
+       // This will get all the variation prices and loop throughout them
+      $children_ids = $product->get_children();
+
+      foreach( $children_ids as $child_id ){
+          $child_product = wc_get_product($child_id);
+
+          $regular_price = (float) $child_product->get_regular_price();
+          $sale_price    = (float) $child_product->get_sale_price();
+
+          if ( $sale_price != 0 || ! empty($sale_price) ) {
+              // Calculate and set in the array the percentage for each child on sale
+              $percentages[] = round(100 - ($sale_price / $regular_price * 100));
+          }
+      }
+     // Displays maximum discount value
+      $percentage = max($percentages) . '%';
+
+  } else {
+      $regular_price = (float) $product->get_regular_price();
+      $sale_price    = (float) $product->get_sale_price();
+
+      if ( $sale_price != 0 || ! empty($sale_price) ) {
+          $percentage    = round(100 - ($sale_price / $regular_price * 100)) . '%';
+      } else {
+          return $html;
+      }
+  }
+  return '<span class="onsale">' . esc_html__( '-', 'woocommerce' ) . ' '. $percentage . '</span>'; // If needed then change or remove "up to -" text
+}
+add_action( 'woocommerce_sale_flash', 'display_percentage_on_sale_badge', 20, 3 );
+
+/**
+ *Display New badge for recent products
+ *
+ * @link https://wpsimplehacks.com/how-to-display-new-badge-on-woocommerce-recent-products/
+ */      
+function new_badge() {
+   global $product;
+   $newness_days = 30; // Number of days the badge is shown
+   $created = strtotime( $product->get_date_created() );
+   if ( ( time() - ( 60 * 60 * 24 * $newness_days ) ) < $created ) {
+      echo '<span class="new-badge onsale">' . esc_html__( 'New', 'woocommerce' ) . '</span>';
+   }
+}
+add_action( 'woocommerce_before_shop_loop_item_title', 'new_badge', 3 ); 

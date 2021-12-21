@@ -40,7 +40,11 @@ get_header();
 
 					endwhile;
 
-					the_posts_navigation();
+					the_posts_pagination( array(
+						'mid_size'  => 3,
+						'prev_text' => __( 'Previous', 'funiro' ),
+						'next_text' => __( 'Next', 'funiro' ),
+					) );
 
 				else :
 

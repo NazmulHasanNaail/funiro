@@ -196,7 +196,7 @@ input[type="datetime-local"],
 input[type="color"],
 textarea {
 	color: var(--color-2);
-	border: 1px solid transparent;
+	border: 1px solid var(--primary-2);
 	border-radius: 0;
 	padding: 10px;
 	outline: none;
@@ -222,7 +222,7 @@ textarea:focus {
 	color: #111;
 	outline: none;
 	box-shadow: none;
-	border-color: transparent;
+	border-color: var(--primary);
 }
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
@@ -232,7 +232,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 select {
-	border: 1px solid #ccc;
+	border: 1px solid var(--primary-2);
 }
 
 textarea {
@@ -244,7 +244,7 @@ textarea {
 --------------------------------------------------------------*/
 /* 2. header area style */
 .funiro-header_area {
-	padding-top: 40px;
+	padding-top: 30px;
 	width: 100%;
 	z-index: 9999;
 	background-color: transparent;
@@ -325,6 +325,10 @@ textarea {
 .header-search-area{
 	flex: 1;
 	max-width: 473px;
+}
+
+.header-search-area input[type="search"]{
+	border-color: transparent;
 }
 
 .header-search-area .search-submit{
@@ -488,6 +492,10 @@ article.search-posts{
 	margin-bottom: 30px;
 	border-bottom: 1px dashed var(--border-color);
 }
+article.blog-posts:last-child,
+article.search-posts:last-child{
+	border-bottom: 0;
+}
 article.blog-posts .entry-content{
 	padding-top: 10px;
 }
@@ -510,6 +518,11 @@ article.post .entry-meta a{
 		display: flex;
 		align-items: center;
 	}
+	article.blog-posts:last-child,
+    article.search-posts:last-child{
+		padding-bottom: 0;
+		margin-bottom: 0;
+    }
 	article.blog-posts .post-thumbnail{
 		width: 50%;
 	}
@@ -518,6 +531,83 @@ article.post .entry-meta a{
 		padding-left: 30px;
 		padding-top: 0;
 	}
+}
+
+/*blog navigation*/
+nav.navigation.pagination{
+	justify-content: center;
+	margin-top: 50px;
+}
+nav.navigation.pagination .nav-links .page-numbers{
+	padding: 5px 15px;
+	color: var(--color-3);
+	font-size: 18px;
+}
+nav.navigation.pagination .nav-links .page-numbers.current,
+nav.navigation.pagination .nav-links .page-numbers:hover{
+	color: var(--primary);
+}
+
+/*comment*/
+.comments-area {
+	margin-top: 50px;
+}
+.comments-area .comment-list,
+.comments-area .comment-respond{
+	margin-top: 30px;
+}
+.comments-area .comment-list li.depth-1>.comment-body{
+	background-color: var(--primary-2);
+	padding: 10px;
+}
+.comments-area .comment-list li:not(:last-child),
+.comments-area .comment-list li.parent .comment-body{
+	margin-bottom: 30px;
+}
+.comments-area .comment-list li li:not(:last-child){
+	margin-bottom: 30px;
+}
+.comments-area .comment-list li ol{
+	margin-left: 15px;
+}
+.comment-meta {
+	padding-bottom: 10px;
+}
+.comment-meta .comment-author.vcard img{
+	border-radius: 100%;
+	object-fit: cover;
+}
+.comment-meta a{
+	color: var(--color-3);
+}
+.comments-area .reply{
+	text-align: right;
+}
+.comments-area .reply a{
+	color: var(--color-1);
+	font-weight: 500;
+}
+.comments-area .reply a:hover{
+	color: var(--primary);
+}
+.comment-respond input[type="text"],
+.comment-respond input[type="url"],
+.comment-respond input[type="email"]{
+	width: 100%;
+}
+.comment-respond .form-submit{
+	text-align: right;
+}
+.comment-respond input[type="submit"].submit{
+	background: var(--primary);
+	color: var(--color-white);
+	padding: 14px;
+	transition: 0.3s ease-in-out;
+}
+.comment-respond input[type="submit"].submit:hover{
+	background:var(--color-white);
+	color: var(--primary);
+	border-color: var(--primary);
 }
 
 /*--------------------------------------------------------------
@@ -541,21 +631,32 @@ article.post .entry-meta a{
 }
 .widget a,
 .widget table tbody,
-.widget table tbody caption{
+.widget table caption{
 	color: var(--color-2);
 }
 .widget a:hover{
 	color: var(--primary);
 }
 /*calendar widget*/
-.widget.widget_calendar{
-	position: relative;
+.widget.widget_calendar table{
+	caption-side: top;
+	text-align: center;
 }
-.widget.widget_calendar nav{
-    position: absolute;
-    bottom: 28px;
-    right: 5px;
+.widget table caption{
+	text-align: center;
 }
 .widget.widget_calendar a{
 	color: var(--primary);
+}
+/*search widget*/
+.widget.widget_search label{
+	margin-bottom: 10px;
+}
+.widget.widget_search input{
+	border-color: var(--primary-2);
+}
+.widget.widget_search button{
+	background: var(--primary);
+	border-color: var(--primary);
+	color: var(--color-white);
 }

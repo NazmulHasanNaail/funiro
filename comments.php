@@ -30,17 +30,13 @@ if ( post_password_required() ) {
 			<?php
 			$funiro_comment_count = get_comments_number();
 			if ( '1' === $funiro_comment_count ) {
-				printf(
 					/* translators: 1: title. */
-					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'funiro' ),
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
+					echo esc_html__( 'One Comment', 'funiro' );
 			} else {
 				printf( 
 					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $funiro_comment_count, 'comments title', 'funiro' ) ),
+					esc_html('%1$s Comments', 'funiro'),
 					number_format_i18n( $funiro_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
 				);
 			}
 			?>
@@ -54,6 +50,7 @@ if ( post_password_required() ) {
 				array(
 					'style'      => 'ol',
 					'short_ping' => true,
+					'max_depth'         => 2,
 				)
 			);
 			?>

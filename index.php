@@ -20,7 +20,9 @@ get_header();
 			<div class="col-lg-8">
 				<?php
 				if ( have_posts() ) :
-
+				?>
+				<div class="blog-list">
+				<?php
 					/* Start the Loop */
 					while ( have_posts() ) :
 						the_post();
@@ -33,8 +35,14 @@ get_header();
 						get_template_part( 'template-parts/content', get_post_type() );
 
 					endwhile;
-
-					the_posts_navigation();
+					?>
+				</div>
+					<?php
+					the_posts_pagination( array(
+						'mid_size'  => 3,
+						'prev_text' => __( 'Previous', 'funiro' ),
+						'next_text' => __( 'Next', 'funiro' ),
+					) );
 
 				else :
 
