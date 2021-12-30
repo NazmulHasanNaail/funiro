@@ -40,8 +40,8 @@ get_header();
 					<?php
 					the_posts_pagination( array(
 						'mid_size'  => 3,
-						'prev_text' => __( 'Previous', 'funiro' ),
-						'next_text' => __( 'Next', 'funiro' ),
+						'prev_text' => __( '←', 'funiro' ),
+						'next_text' => __( '→', 'funiro' ),
 					) );
 
 				else :

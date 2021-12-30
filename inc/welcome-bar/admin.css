@@ -1,0 +1,13 @@
+.notice.thank-notice {
+    background: #FCF8F3;
+    color: #996097;
+    text-align:center;
+    padding: 25px 10px !important;
+    border: 8px solid #fff;
+    position: relative;
+    box-shadow: none;
+}
+ .thank-notice p{
+    color: #111;
+    font-size: 16px;
+ }

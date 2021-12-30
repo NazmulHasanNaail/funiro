@@ -35,20 +35,20 @@ if (!function_exists('funiro_breadcrumbs')):
                                 if(get_option('show_on_front')=='page'){
                                     if(is_front_page()){?>
                                         <div class="page-title text-center">
-                                            <h1><?php echo esc_html(get_the_title( get_option('page_on_front', true) )); ?></h1>
+                                            <h6><?php echo esc_html(get_the_title( get_option('page_on_front', true) )); ?></h6>
                                         </div>
                                     <?php   
                                     }
                                     else if(is_home()){?>
                                         <div class="page-title text-center">
-                                            <h1><?php echo esc_html(get_the_title( get_option('page_for_posts', true) )); ?></h1>
+                                            <h6><?php echo esc_html(get_the_title( get_option('page_for_posts', true) )); ?></h6>
                                         </div>          
                                     <?php
                                     }
                                 }
                                 elseif(get_option('show_on_front')=='posts'){?>
                                     <div class="page-title text-center">
-                                        <h1><?php echo wp_kses_post(get_theme_mod('blog_page_title_option', __('Home', 'funiro' ))); ?></h1>
+                                        <h6><?php echo wp_kses_post(get_theme_mod('blog_page_title_option', __('Home', 'funiro' ))); ?></h6>
                                     </div>
                                 <?php
                                 }   
@@ -57,18 +57,18 @@ if (!function_exists('funiro_breadcrumbs')):
                             else{
                                 if(get_option('show_on_front')=='posts'){?>
                                     <div class="page-title text-center">
-                                        <h1><?php echo wp_kses_post(get_theme_mod('blog_page_title_option', __('Home', 'funiro' ))); ?></h1>
+                                        <h6><?php echo wp_kses_post(get_theme_mod('blog_page_title_option', __('Home', 'funiro' ))); ?></h6>
                                     </div> 
                                 <?php
                                 }else{
                                     if(is_front_page()){?>
                                         <div class="page-title text-center">
-                                            <h1><?php echo esc_html(get_the_title( get_option('page_on_front', true) )); ?></h1>
+                                            <h6><?php echo esc_html(get_the_title( get_option('page_on_front', true) )); ?></h6>
                                         </div>
                                     <?php   
                                     }else if(is_home()){?>
                                         <div class="page-title text-center">
-                                            <h1><?php echo esc_html(get_the_title( get_option('page_for_posts', true) )); ?></h1>
+                                            <h6><?php echo esc_html(get_the_title( get_option('page_for_posts', true) )); ?></h6>
                                         </div>          
                                     <?php
                                     }
@@ -78,35 +78,35 @@ if (!function_exists('funiro_breadcrumbs')):
                         else{ ?>                   
                             <div class="page-title text-center">
                             <?php if (is_search()){
-                                    echo '<h1>'. get_search_query() .'</h1>';
+                                    echo '<h6>'. get_search_query() .'</h6>';
                             }
                             else if(is_404())
                             {
-                                echo '<h1>'. esc_html__('Error 404','funiro' ) .'</h1>';  
+                                echo '<h6>'. esc_html__('Error 404','funiro' ) .'</h6>';  
                             }
                             else if(is_category())
                             {
-                                echo '<h1>'. ( esc_html__('Category: ','funiro' ).single_cat_title( '', false ) ) .'</h1>';   
+                                echo '<h6>'. ( esc_html__('Category: ','funiro' ).single_cat_title( '', false ) ) .'</h6>';   
                             }
                             else if ( !is_single() && !is_page() && get_post_type() != 'post' && !is_404() ){ 
                                 if ( class_exists( 'WooCommerce' ) ){
                                     if(is_shop()){ ?>
-                                        <h1><?php woocommerce_page_title(); ?></h1>
+                                        <h6><?php woocommerce_page_title(); ?></h6>
                                         <?php 
                                         }   
                                      }
                             }
                             elseif( is_tag() )
                             {
-                                echo '<h1>'. ( esc_html__('Tag: ','funiro' ) .single_tag_title( '', false ) ) .'</h1>';
+                                echo '<h6>'. ( esc_html__('Tag: ','funiro' ) .single_tag_title( '', false ) ) .'</h6>';
                             }
                             else if(is_archive())
                             {   
-                            the_archive_title( '<h1>', '</h1>' ); 
+                            the_archive_title( '<h6>', '</h6>' ); 
                             }
                             else
                             { ?>
-                                <h1><?php the_title(''); ?></h1>
+                                <h6><?php the_title(''); ?></h6>
                             <?php } ?>
                             </div>  
                         <?php } 

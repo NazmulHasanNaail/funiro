@@ -152,9 +152,20 @@ require ( FUNIRO_TEMPLATE_DIR . '/inc/template-tags.php');
 require ( FUNIRO_TEMPLATE_DIR . '/inc/template-functions.php');
 
 /**
+ * Customizer Repeater.
+ */
+require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/customizer-repeater/inc/customizer.php');
+
+/**
  * Customizer additions.
  */
 require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/customizer.php');
+
+/**
+ * Shortcode additions.
+ */
+require ( FUNIRO_TEMPLATE_DIR . '/inc/sections/shortcodes.php');
+
 
 /**
  * Load Jetpack compatibility file.
@@ -169,6 +180,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require ( FUNIRO_TEMPLATE_DIR . '/inc/woocommerce.php');
 }
+
+/**
+ * Load Welcome-bar compatibility file.
+ */
+require ( FUNIRO_TEMPLATE_DIR . '/inc/welcome-bar/welcome-bar.php');
 
 
 //helper function 

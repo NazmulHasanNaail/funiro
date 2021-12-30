@@ -70,10 +70,11 @@ if ( ! function_exists( 'funiro_post_thumbnail' ) ) :
 		}
 
 		if ( is_singular() ) :
+			$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); 
 			?>
 
 			<div class="post-thumbnail">
-				<?php the_post_thumbnail(); ?>
+				<img src="<?php echo esc_url($featured_img_url); ?>" alt="<?php the_title(); ?>" width="1240"  height="350">
 			</div><!-- .post-thumbnail -->
 
 		<?php else : ?>

@@ -8,11 +8,13 @@
 	//sticy-header
 	$(window).on('scroll', function () {
 		var scroll = $(window).scrollTop();
-		if (scroll < 245) {
+		if (scroll < 100) {
 			$(".funiro-header_area").removeClass("sticky");
 		} else {
 			$(".funiro-header_area").addClass("sticky");
 		}
 	});
+
+
 	
 }(jQuery));

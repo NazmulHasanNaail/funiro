@@ -21,7 +21,7 @@ function funiro_woocommerce_setup() {
 		'woocommerce',
 		array(
 			'thumbnail_image_width' => 285,
-			'single_image_width'    => 350,
+			'single_image_width'    => 650,
 			'product_grid'          => array(
 				'default_rows'    => 3,
 				'min_rows'        => 1,
@@ -293,8 +293,9 @@ function display_percentage_on_sale_badge( $html, $post, $product ) {
           return $html;
       }
   }
-  return '<span class="onsale">' . esc_html__( '-', 'woocommerce' ) . ' '. $percentage . '</span>'; // If needed then change or remove "up to -" text
+  return '<span class="onsale">' . esc_html__( '-', 'funiro' ) .'' .$percentage. '</span>'; // If needed then change or remove "up to -" text
 }
+
 add_action( 'woocommerce_sale_flash', 'display_percentage_on_sale_badge', 20, 3 );
 
 /**
@@ -307,7 +308,7 @@ function new_badge() {
    $newness_days = 30; // Number of days the badge is shown
    $created = strtotime( $product->get_date_created() );
    if ( ( time() - ( 60 * 60 * 24 * $newness_days ) ) < $created ) {
-      echo '<span class="new-badge onsale">' . esc_html__( 'New', 'woocommerce' ) . '</span>';
+      echo '<span class="new-badge onsale">' . esc_html__( 'New', 'funiro' ) . '</span>';
    }
 }
 add_action( 'woocommerce_before_shop_loop_item_title', 'new_badge', 3 ); 

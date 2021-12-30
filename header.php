@@ -24,6 +24,10 @@
 <div id="page" <?php if( get_theme_mod( 'funiro_layoutoption' ) ) { echo 'class="boxlayout"'; } ?>>
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'funiro' ); ?></a>
 	<?php 
+	   global $template;
 	   get_template_part('inc/header/header');
-	   funiro_breadcrumbs();
-	?>
+	   
+	   if(basename($template)!='funiro-home.php'):
+		funiro_breadcrumbs();
+	   endif;
+	  

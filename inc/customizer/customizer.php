@@ -165,6 +165,28 @@ function funiro_customize_register( $wp_customize ) {
 			),
 		) );
 
+		//==Front page Pannel==
+		$wp_customize->add_panel( 'funiro_front_page_panel_settings', array(
+			'priority' => 4,
+			'capability' => 'edit_theme_options',
+			'theme_supports' => '',
+			'title' => __( 'Funiro Front Page Settings', 'funiro' ),		
+		) );
+
+		//==Footer page Pannel==
+		$wp_customize->add_panel( 'funiro_footer_panel_settings', array(
+			'priority' => 4,
+			'capability' => 'edit_theme_options',
+			'theme_supports' => '',
+			'title' => __( 'Funiro footer Settings', 'funiro' ),		
+		) );
+		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/banner.php');
+		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/services.php');
+		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/products.php');
+		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/rooms.php');
+		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/blogs.php');
+		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/footer.php');
+
 }
 add_action( 'customize_register', 'funiro_customize_register' );
 
@@ -190,6 +212,6 @@ function funiro_customize_partial_blogdescription() {
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function funiro_customize_preview_js() {
-	wp_enqueue_script( 'funiro-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), _S_VERSION, true );
+	wp_enqueue_script( 'funiro-customizer', FUNIRO_TEMPLATE_DIR_URI . '/assets/js/customizer.js', array( 'customize-preview' ), _S_VERSION, true );
 }
 add_action( 'customize_preview_init', 'funiro_customize_preview_js' );
