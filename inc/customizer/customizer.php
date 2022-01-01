@@ -33,6 +33,25 @@ function funiro_customize_register( $wp_customize ) {
 	}
 
 
+	function funiro_sanitize_page( $input ) {
+
+		// Ensure $input is an absolute integer.
+		$page_id = absint( $input );
+
+		// If $page_id is an ID of a published page, return it; otherwise, return false
+		return ( 'publish' == get_post_status( $page_id ) ? $page_id : false );
+	
+	}
+
+	function funiro_post_choices() {
+		$posts = get_posts( array( 'numberposts' => -1 ) );
+		$choices = array();
+		$choices[0] = esc_html__( '--Select--', 'funiro' );
+		foreach ( $posts as $post ) {
+			$choices[ $post->ID ] = $post->post_title;
+		}
+		return  $choices;
+	}
 
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
@@ -173,6 +192,7 @@ function funiro_customize_register( $wp_customize ) {
 			'title' => __( 'Funiro Front Page Settings', 'funiro' ),		
 		) );
 
+
 		//==Footer page Pannel==
 		$wp_customize->add_panel( 'funiro_footer_panel_settings', array(
 			'priority' => 4,
@@ -180,12 +200,46 @@ function funiro_customize_register( $wp_customize ) {
 			'theme_supports' => '',
 			'title' => __( 'Funiro footer Settings', 'funiro' ),		
 		) );
+
+
+		class Funiro_Dropdown_Chooser extends WP_Customize_Control{
+
+			public $type = 'dropdown_chooser';
+	
+			public function render_content(){
+				if ( empty( $this->choices ) )
+						return;
+				?>
+					<label>
+						<span class="customize-control-title">
+							<?php echo esc_html( $this->label ); ?>
+						</span>
+	
+						<?php if($this->description){ ?>
+						<span class="description customize-control-description">
+							<?php echo wp_kses_post($this->description); ?>
+						</span>
+						<?php } ?>
+	
+						<select class="camera-store-chosen-select" <?php $this->link(); ?>>
+							<?php
+							foreach ( $this->choices as $value => $label )
+								echo '<option value="' . esc_attr( $value ) . '"' . selected( $this->value(), $value, false ) . '>' . esc_html( $label ) . '</option>';
+							?>
+						</select>
+					</label>
+				<?php
+			}
+		}
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/banner.php');
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/services.php');
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/products.php');
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/rooms.php');
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/blogs.php');
+		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/share_setup.php');
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/footer.php');
+
+	
 
 }
 add_action( 'customize_register', 'funiro_customize_register' );

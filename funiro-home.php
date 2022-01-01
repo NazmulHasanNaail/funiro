@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Nazmul 
+ * Template Name: funiro home
  *
  * If the user has selected a static page for their homepage, this is what will
  * appear.
@@ -35,11 +35,11 @@ if(function_exists('rooms_section')){
 if(function_exists('blogs_section')){
     echo do_shortcode('[blogs]');  
 }
-?>
-<section class="funiro-gallery-area">
-    <span class="funiro-section-sub-title">Share your setup with</span>
- <h2 class="funiro-section-title">#FuniroFurniture</h2>
-</section>
-<?php
+
+
+/*Share_setup area*/
+if(function_exists('share_setup_section')){
+    echo do_shortcode('[share_setup]');  
+}
 
 get_footer();

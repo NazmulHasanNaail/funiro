@@ -49,7 +49,7 @@
         });
 
         $('.icp-auto').on('click', function () {
-            wp.customizerRepeater.iconPickerToggle($(this));
+                wp.customizerRepeater.iconPickerToggle($(this));
         });
 
         $(document).mouseup( function (e) {

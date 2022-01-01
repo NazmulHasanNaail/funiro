@@ -10,7 +10,7 @@ $wp_customize->add_setting('funiro_hide_banner',array(
     'sanitize_callback' => 'funiro_sanitize_checkbox',
 ));	 
 $wp_customize->add_control( 'funiro_hide_banner', array(
-    'label' => __('Check to hide rooms area','funiro'),
+    'label' => __('Check to hide Banner area','funiro'),
     'section'   => 'funiro_front_page_banner',		
     'setting' => 'funiro_hide_banner',	
     'type'      => 'checkbox',

@@ -18,11 +18,10 @@ function banner_section( $atts, $content = null ) {
 	ob_start();
 	?>
     <!--Banner area section-->
-    <section class="funiro-banner-area">
-    <i class="bi bi-arrow-left"></i>
+    <section class="funiro-banner-area ">
         <div class="hero-content-area">
             <div class="container">
-                <div class="hero-contet-box">
+                <div class="hero-contet-box wow fadeInUpBig">
                     <h1><?php echo esc_html( $banner_area_title, 'funiro' ); ?></h1>
                     <p><?php echo esc_html( $banner_area_desc, 'funiro' ); ?></p>
                     <a class="btn funiro-btn" href="<?php echo esc_url($banner_area_btn_url, 'funiro') ?>" target="<?php echo !empty($banner_area_btn_tab)? esc_attr('_blank', 'funiro') : esc_attr('_self', 'funiro')?>">

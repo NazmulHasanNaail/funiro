@@ -45,5 +45,10 @@
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 <?php wp_footer(); ?>
+
+
+<script>
+ new WOW().init();
+</script>
 </body>
 </html>

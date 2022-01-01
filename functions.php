@@ -154,7 +154,7 @@ require ( FUNIRO_TEMPLATE_DIR . '/inc/template-functions.php');
 /**
  * Customizer Repeater.
  */
-require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/customizer-repeater/inc/customizer.php');
+require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/customizer-repeater/functions.php');
 
 /**
  * Customizer additions.

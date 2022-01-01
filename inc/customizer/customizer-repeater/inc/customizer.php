@@ -1,18 +1,20 @@
 <?php
-define( 'CUSTOMIZER_REPEATER_VERSION', '1.1.0' );
-function customizer_repeater_register( $wp_customize ) {
-	
-	require_once( FUNIRO_TEMPLATE_DIR.'/inc/customizer/customizer-repeater/class/customizer-repeater-control.php' );
+function funiro_repeater_register( $wp_customize ) {
+
+	$repeater_path = FUNIRO_TEMPLATE_DIR . '/inc/customizer/customizer-repeater/class/customizer-repeater-control.php';
+	if( file_exists( $repeater_path ) ){
+		require_once( $repeater_path );
+	}
 
 }
-add_action( 'customize_register', 'customizer_repeater_register' );
+add_action( 'customize_register', 'funiro_repeater_register' );
 
-function customizer_repeater_sanitize($input){
+function funiro_repeater_sanitize($input){
 	$input_decoded = json_decode($input,true);
 
 	if(!empty($input_decoded)) {
 		foreach ($input_decoded as $boxk => $box ){
-			foreach ($box as $key => $value){
+			foreach ($box as $key => $value){  
 
 					$input_decoded[$boxk][$key] = wp_kses_post( force_balance_tags( $value ) );
 

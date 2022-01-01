@@ -20,7 +20,7 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments" class="comments-area">
+<div id="comments" class="comments-area wow fadeInUp">
 
 	<?php
 	// You can start editing here -- including this comment!
@@ -44,7 +44,7 @@ if ( post_password_required() ) {
 
 		<?php the_comments_navigation(); ?>
 
-		<ol class="comment-list">
+		<ol class="comment-list wow fadeInUpBig">
 			<?php
 			wp_list_comments(
 				array(

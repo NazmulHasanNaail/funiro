@@ -19,14 +19,14 @@ function rooms_section( $atts, $content = null ) {
     <section class="funiro-rooms-area">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-4 mb-5">
+                <div class="col-lg-4 mb-5 wow fadeInLeft">
                     <h2><?php echo esc_html( $rooms_area_title, 'funiro' ); ?></h2>
                     <p><?php echo esc_html( $rooms_area_desc, 'funiro' ); ?></p>
                     <a class="btn funiro-btn" href="<?php echo esc_url($rooms_area_btn_url, 'funiro') ?>" target="<?php echo !empty($rooms_area_btn_tab)? esc_attr('_blank', 'funiro') : esc_attr('_self', 'funiro')?>">
                       <?php echo esc_html( $rooms_area_btn_text, 'funiro' ); ?>
                     </a>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 wow fadeInRight">
                     <div class="funiro-rooms-slider-wpapper">
                     <!-- Slider main container -->
                     <?php 

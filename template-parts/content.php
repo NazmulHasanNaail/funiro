@@ -9,7 +9,7 @@
 
 $classes = join( '  ', get_post_class() );
 ?>
-<article id="post-<?php the_ID(); ?>" class="<?php if( ! is_singular()){echo "blog-posts "; } echo esc_attr($classes);   ?>">
+<article id="post-<?php the_ID(); ?>" class="wow fadeInUp <?php if( ! is_singular()){echo "blog-posts "; } echo esc_attr($classes);   ?>">
 	<?php 
 	if( get_theme_mod( 'funiro_hide_postfeatured_image' ) == '') { 
 		funiro_post_thumbnail();

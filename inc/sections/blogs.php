@@ -16,8 +16,8 @@ function blogs_section( $atts, $content = null ) {
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2 class="funiro-section-title"><?php echo esc_html( $blog_area_title, 'funiro' ); ?></h2>
-                    <div class="funiro-blogs-slider-wpapper">
+                    <h2 class="funiro-section-title wow fadeInLeft"><?php echo esc_html( $blog_area_title, 'funiro' ); ?></h2>
+                    <div class="funiro-blogs-slider-wpapper wow fadeInUpBig">
                         <!-- Slider main container -->
                         <?php 
                             if ( shortcode_exists( 'absolute_swiper' ) ) {

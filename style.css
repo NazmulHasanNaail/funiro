@@ -152,18 +152,25 @@ img{
 		max-width: 1240px;
 	}	
 }
-.funiro-btn{
+
+/*funiro button*/
+.funiro-btn,
+.comment-respond input[type="submit"].submit{
 	color: var(--color-white);
     background-color: var(--primary);
     border-color: var(--primary);
 	line-height: 1;
     padding: 15px 40px;
     height: 48px;
+	border-radius: 0;
+	transition: 0.3s ease-in-out;
 }
-.funiro-btn:hover{
+.funiro-btn:hover,
+.comment-respond input[type="submit"].submit:hover{
 	color: var(--primary);
     background-color: transparent;
     border-color: var(--primary);
+	transform: translateY(-3px);
 }
 
 .funiro-btn-outline{
@@ -174,12 +181,16 @@ img{
     padding: 15px 40px;
     height: 48px;
 	border-radius: 0;
+	transition: 0.3s ease-in-out;
 }
 .funiro-btn-outline:hover{
 	color: var(--color-white);
     background-color: var(--primary);
     border-color: var(--primary);
+	transform: translateY(-3px);
 }
+
+
 /*page layput*/
 .boxlayout{ 
 	position:relative;
@@ -281,7 +292,6 @@ input[type="submit"] {
 	box-shadow: none;
 	border: 1px solid;
 	border-color:transparent;
-	border-radius: 3px;
 	background: transparent;
 	line-height: 1;
 	padding: 0.6em 1em 0.4em;
@@ -413,11 +423,12 @@ span.selection .select2-selection.select2-selection--single{
 .funiro-header_area {
 	padding-top: 40px;
 	width: 100%;
-	z-index: 9999;
+	z-index: 9;
 	background-color: transparent;
 	transition:0.3s;
 	position: fixed;
 	left: 0;
+	right: 0;
 	top: 0;
 }
 
@@ -425,7 +436,7 @@ span.selection .select2-selection.select2-selection--single{
 	box-shadow: 1px 1px 3px rgb(80 80 80 / 10%);
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background-color:var(--primary);
+	background-color:var(--primary-2);
 }
 
 .funiro-header_area nav ul{
@@ -441,6 +452,46 @@ span.selection .select2-selection.select2-selection--single{
 	text-align: center;
 	font-size: 16px;
 	font-weight: 500;
+}
+
+
+.menu-item-has-children >a::after{
+	content: "\f078";
+	font-family: "Font Awesome 5 Free"; 
+	font-weight: 900;
+	display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+	font-size: 13px;
+	color: var(--color-1);
+	margin-left: 10px;
+
+}
+.menu-item-has-children .sub-menu{
+	background-color: var(--primary-2);
+    visibility: hidden;
+    display: block;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: all 0.35s ease-out 0s;
+    -o-transition: all 0.35s ease-out 0s;
+    transition: all 0.35s ease-out 0s;
+	position: absolute;
+	top: 100%;
+	height: 0;
+}
+.menu-item-has-children .sub-menu a{
+	padding: 10px 0;
+	width: 200px;
+	text-align: left;
+}
+.menu-item-has-children:hover > .sub-menu{
+	visibility: visible;
+	opacity: 1;
+	height: auto;
+	padding: 10px;
 }
 .funiro-header_area nav ul li a:hover{
 	color: var(--color-black);
@@ -459,7 +510,7 @@ span.selection .select2-selection.select2-selection--single{
 	position: relative;
 	height: 3px;
 	width: 100%;
-	background: #32beff;;
+	background: var(--color-black);
 	display: inline-block;
 	border-radius: 5px;
 	transition: all 0.3s ease-out 0s;
@@ -471,7 +522,7 @@ span.selection .select2-selection.select2-selection--single{
 	height: 3px;
 	width: 100%;
 	border-radius: 5px;
-	background: #32beff;
+	background: var(--color-black);
 	transition: all 0.3s ease-out 0s;
 }
 .hamburger-menu span::before{
@@ -556,12 +607,12 @@ span.selection .select2-selection.select2-selection--single{
 		background-color: transparent;
 	}
 	.hamburger-menu.toggle span::before{
-		background: #32beff;
+		background: var(--color-black);
 		transform: rotate(45deg);
 		top: 0;
 	}
 	.hamburger-menu.toggle span::after{
-		background: #32beff;;
+		background: var(--color-black);
 		transform: rotate(-45deg);
 		bottom: 0;
 	}
@@ -570,11 +621,11 @@ span.selection .select2-selection.select2-selection--single{
 		top: 100%;
 		left: -100%;
 		width: 100%;
-		background: #e6e6e6;;
+		background: var(--primary-2);
 		transition: all 0.3s ease-out 0s;
 		overflow: hidden;
 		z-index: 9999;
-		margin-top: -1px;
+		margin-top: 20px;
 		opacity: 0;
 	}
 	.funiro-header_area nav.active{
@@ -589,22 +640,34 @@ span.selection .select2-selection.select2-selection--single{
 		padding: 32px 16px;
 		height: 60px;
 		line-height: 0;
+		text-align: left;
 	}
 	.funiro-header_area nav ul li:first-child a{
 		padding-left: 16px;
 	}
 	.funiro-header_area nav ul li a:hover{
 		border-bottom:none;
-		color: #000000;
-		background-color: #32beff;
+		color: var(--color-white);
+		background-color: var(--primary);
 	}
-
+	li.menu-item-has-children >a:hover::after{
+		color: var(--color-white);
+	}
+	.menu-item-has-children .sub-menu{
+		position: unset;
+		top: auto;
+	}
+	.menu-item-has-children .sub-menu a{
+		width: auto;
+		line-height: 2.1;
+		padding-left: 20px;
+	}
 	.site-branding{
 		position: relative;
 		left: -25px;
 		width: 100%;
 		text-align: center;
-		padding-bottom: 15px;
+		margin-bottom: 20px;
 	}
 }
 
@@ -669,8 +732,19 @@ article.blog-posts:last-child,
 article.search-posts:last-child{
 	border-bottom: 0;
 }
+article.blog-posts .post-thumbnail{
+	display: block;
+	overflow: hidden;
+}
+article.blog-posts .post-thumbnail img{
+	width: 100%;
+	transition: 0.3s ease-in-out;
+}
 article.blog-posts .entry-content{
 	padding-top: 10px;
+}
+article.post h1{
+	margin-top: 30px;
 }
 article.post .entry-meta{
 	margin-bottom: 10px;
@@ -686,10 +760,13 @@ article.post .entry-meta>span{
 article.post .entry-meta a{
 	color: var(--color-3);
 }
+
+article.blog-posts:hover .post-thumbnail img{
+	transform: scale(1.1);
+}
 @media(min-width:991px){
 	article.blog-posts{
 		display: flex;
-		align-items: center;
 	}
 	article.blog-posts:last-child,
     article.search-posts:last-child{
@@ -737,8 +814,7 @@ nav a.page-numbers:hover{
 .comments-area {
 	margin-top: 50px;
 }
-.comments-area .comment-list,
-.comments-area .comment-respond{
+.comment-respond{
 	margin-top: 30px;
 }
 .comments-area .comment-list li.depth-1>.comment-body{
@@ -783,18 +859,6 @@ nav a.page-numbers:hover{
 .comment-respond .form-submit{
 	text-align: right;
 }
-.comment-respond input[type="submit"].submit{
-	background: var(--primary);
-	color: var(--color-white);
-	padding: 14px;
-	transition: 0.3s ease-in-out;
-}
-.comment-respond input[type="submit"].submit:hover{
-	background:var(--color-white);
-	color: var(--primary);
-	border-color: var(--primary);
-}
-
 /*--------------------------------------------------------------
   Sidebar
 --------------------------------------------------------------*/
@@ -875,6 +939,7 @@ nav a.page-numbers:hover{
 	background: var(--primary);
 	border-color: var(--primary);
 	color: var(--color-white);
+	border-radius: 0;
 }
 /*mailchimp widget*/
 .mc4wp-form-fields input[type="email"]{
@@ -1257,8 +1322,104 @@ nav a.page-numbers:hover{
 --------------------------------------------------------------*/
 .funiro-gallery-area{
 	padding-bottom: 44px;
+	max-width: 1400px;
+	margin: 0 auto;
+}
+.funiro-gallery-area .funiro-section-sub-title{
+	position: relative;
+	top: 75px;
+}
+.funiro-gallery-area .funiro-section-title {
+	position: relative;
+	top: 75px;
+	margin-bottom: 0;
+}
+.funiro-gallery-grid {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: 3fr 1fr 2fr;
+	grid-template-rows: 1fr 1fr;
+	list-style-type: none;
+	overflow: hidden;
 }
 
+.funiro-gallery-grid .funiro-img{
+  object-fit: cover;
+  gap: 16px;
+}
+
+.funiro-gallery-grid .gallery-1 {
+	grid-column: 1;
+	transform: translate(-73px);
+}
+
+.funiro-gallery-grid .gallery-1,
+.funiro-gallery-grid .gallery-2  {
+	align-self: end;
+	grid-row: 1;
+}
+
+.funiro-gallery-grid .gallery-2 {
+	grid-column: 2/-4;
+	justify-self: end;
+}
+
+.funiro-gallery-grid .gallery-3 {
+	grid-column: 2;
+	grid-row: 1/2;
+	transform: translateY(196px);
+  height: 90%;
+}
+
+.funiro-gallery-grid .gallery-5,
+.funiro-gallery-grid .gallery-4 {
+	align-self: end;
+	grid-column: 3;
+	grid-row: 1;
+}
+
+.funiro-gallery-grid .gallery-4 {
+	justify-self: start;
+	transform: translateY(51px);
+}
+
+.funiro-gallery-grid .gallery-5 {
+	transform: translate(307px, 51px);
+}
+
+.funiro-gallery-grid .gallery-7,
+.funiro-gallery-grid .gallery-6  {
+	align-self: start;
+	grid-row: 2;
+}
+
+.funiro-gallery-grid .gallery-6  {
+	grid-column: 1;
+	transform: translate(-73px);
+}
+
+.funiro-gallery-grid .gallery-7{
+  grid-column: 2/-4;
+	justify-self: end;
+}
+
+.funiro-gallery-grid .gallery-8, 
+.funiro-gallery-grid .gallery-9 {
+	align-self: start;
+	grid-row: 2;
+}
+
+.funiro-gallery-grid .gallery-8 {
+	grid-column: 3;
+	justify-self: start;
+	transform: translateY(51px);
+}
+
+.funiro-gallery-grid .gallery-9 {
+	grid-column: -1/-2;
+	justify-self: end;
+	transform: translate(12px, 51px);
+}
 /*--------------------------------------------------------------
   Foooter
 --------------------------------------------------------------*/
@@ -1285,3 +1446,4 @@ nav a.page-numbers:hover{
 	line-height: 29px;
 	color: var(--color-black);
 }
+
