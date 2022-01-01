@@ -25,7 +25,7 @@ function services_section( $atts, $content = null ) {
 				$title = $value->title;
 				$desc = $value->text;
 			?>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-3 col-md-6  wow fadeInDown">
 					<div class="funiro-service-item d-flex">
 						<?php if( !empty($choice) && $choice !== 'customizer_repeater_none'): ?>
 						<div class="funiro-service-icon">

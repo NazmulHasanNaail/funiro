@@ -32,7 +32,7 @@ function share_setup_section( $atts, $content = null ) {
 
                 
 			?>
-        <img class="funiro-img gallery-<?php echo $i++ ?>" src="<?php echo esc_url($img_url); ?>" alt="">
+        <img class="wow fadeInUp funiro-img gallery-<?php echo $i++ ?>" src="<?php echo esc_url($img_url); ?>" alt="">
 
         <?php ; } ?>
     </div>

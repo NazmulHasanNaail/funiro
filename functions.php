@@ -116,6 +116,16 @@ function funiro_content_width() {
 }
 add_action( 'after_setup_theme', 'funiro_content_width', 0 );
 
+//helper function 
+/* Excerpt Length Limit Fuctions */
+function funiro_string_limit_words($string, $word_limit) {
+	$words = explode(' ', $string, ($word_limit + 1));
+	if(count($words) > $word_limit)
+	array_pop($words);
+	return implode(' ', $words);
+} 
+
+
 // Global variables define
 define('FUNIRO_TEMPLATE_DIR_URI', get_template_directory_uri());
 define('FUNIRO_TEMPLATE_DIR', get_template_directory());
@@ -166,6 +176,11 @@ require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/customizer.php');
  */
 require ( FUNIRO_TEMPLATE_DIR . '/inc/sections/shortcodes.php');
 
+/**
+ * Load TGMA compatibility file.
+ */
+require ( FUNIRO_TEMPLATE_DIR . '/inc/class-tgm-plugin-activation.php');
+require ( FUNIRO_TEMPLATE_DIR . '/inc/recommend-plugins.php');
 
 /**
  * Load Jetpack compatibility file.
@@ -187,11 +202,3 @@ if ( class_exists( 'WooCommerce' ) ) {
 require ( FUNIRO_TEMPLATE_DIR . '/inc/welcome-bar/welcome-bar.php');
 
 
-//helper function 
-/* Excerpt Length Limit Fuctions */
-function funiro_string_limit_words($string, $word_limit) {
-	$words = explode(' ', $string, ($word_limit + 1));
-	if(count($words) > $word_limit)
-	array_pop($words);
-	return implode(' ', $words);
-} 

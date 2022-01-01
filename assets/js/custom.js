@@ -15,5 +15,6 @@
 		}
 	});
 
+	new WOW().init();
 	
 }(jQuery));

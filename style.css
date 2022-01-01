@@ -554,6 +554,25 @@ span.selection .select2-selection.select2-selection--single{
 	margin-right: -1px;
 
 }
+
+.cart-contents{
+	color: #262f56;
+}
+.cart-contents .count{
+	border-radius: 50%;
+    background: var(--primary);
+	color: var(--color-white);
+	font-size: var(--funiro-fs-14);
+    width: 25px;
+    height: 25px;
+    display: block;
+    padding: 4px;
+    line-height: 1.1;
+    text-align: center;
+	position: absolute;
+    top: -12px;
+    left: 15px;
+}
 .header-right-area{
 	margin-left: 15px;
 }
@@ -1028,28 +1047,26 @@ nav a.page-numbers:hover{
 }
 
 /*banner slider next prev button*/
-
-.funiro-banner-area  .swiper-button-next{
-	background-image: url('../funiro/assets/images/left-white-arrow.svg');
-}
-.funiro-banner-area  .swiper-button-prev{
-	
-	background-image: url('../funiro/assets/images/right-white-arrow.svg');
-}
-
-.funiro-banner-area .swiper-button-disabled.swiper-button-next{
+.funiro-banner-area .swiper-button-next{
 	background-image: url('../funiro/assets/images/right-arrow.svg');
 	background-color: rgba(232, 159, 113, 0.3);
 }
-.funiro-banner-area .swiper-button-disabled.swiper-button-prev{
+.funiro-banner-area .swiper-button-prev{
 	background-image: url('../funiro/assets/images/left-arrow.svg');
 	background-color: rgba(232, 159, 113, 0.3);
 }
+.funiro-banner-area  .swiper-button-next:hover{
+	background-color: rgba(232, 159, 113, 1);
+	background-image: url('../funiro/assets/images/left-white-arrow.svg');
+}
+.funiro-banner-area  .swiper-button-prev:hover{
+	background-color: rgba(232, 159, 113, 1);
+	background-image: url('../funiro/assets/images/right-white-arrow.svg');
+}
 .funiro-banner-area .swiper-button-prev,
 .funiro-banner-area .swiper-button-next{
-	background-color: rgba(232, 159, 113, 1);
-	opacity: 1;
 	box-shadow: none;
+	opacity: 1;
 }
 @media (min-width: 768px){
 	.funiro-banner-area .swiper-button-prev,

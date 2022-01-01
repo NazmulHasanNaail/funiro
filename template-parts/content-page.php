@@ -6,10 +6,10 @@
  *
  * @package Funiro
  */
-
+$post_class = join(' ', get_post_class());
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" calss="wow fadeInUp <?php  echo esc_attr($post_class); ?>">
 	<?php funiro_post_thumbnail(); ?>
 
 	<div class="entry-content">
