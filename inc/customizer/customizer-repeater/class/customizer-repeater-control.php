@@ -30,12 +30,12 @@ class Funiro_Repeater extends WP_Customize_Control {
 	public function __construct( $manager, $id, $args = array() ) {
 		parent::__construct( $manager, $id, $args );
 		/*Get options from customizer.php*/
-		$this->add_field_label = esc_html__( 'Add new field', 'teczilla' );
+		$this->add_field_label = esc_html__( 'Add new field', 'funiro' );
 		if ( ! empty( $args['add_field_label'] ) ) {
 			$this->add_field_label = $args['add_field_label'];
 		}
 
-		$this->boxtitle = esc_html__( 'Customizer Repeater', 'teczilla' );
+		$this->boxtitle = esc_html__( 'Customizer Repeater', 'funiro' );
 		if ( ! empty ( $args['item_name'] ) ) {
 			$this->boxtitle = $args['item_name'];
 		} elseif ( ! empty( $this->label ) ) {
@@ -279,21 +279,21 @@ class Funiro_Repeater extends WP_Customize_Control {
 						
 						if($this->customizer_repeater_title_control==true){
 							$this->input_control(array(
-								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Title','teczilla' ), $this->id, 'customizer_repeater_title_control' ),
+								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Title','funiro' ), $this->id, 'customizer_repeater_title_control' ),
 								'class' => 'customizer-repeater-title-control '."$funiro_limit".' '."$type_with_id".'',
                                 'type'  => apply_filters('funiro_repeater_input_types_filter', '', $this->id, 'customizer_repeater_title_control' ),
 							), $title);
 						}
 						if($this->customizer_repeater_subtitle_control==true){
 							$this->input_control(array(
-								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Subtitle','teczilla' ), $this->id, 'customizer_repeater_subtitle_control' ),
+								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Subtitle','funiro' ), $this->id, 'customizer_repeater_subtitle_control' ),
 								'class' => 'customizer-repeater-subtitle-control '."$funiro_limit".' '."$type_with_id".'',
 								'type'  => apply_filters('funiro_repeater_input_types_filter', '', $this->id, 'customizer_repeater_subtitle_control' ),
 							), $subtitle);
 						}
 						if($this->customizer_repeater_text_control==true){
 							$this->input_control(array(
-								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Description','teczilla' ), $this->id, 'customizer_repeater_text_control' ),
+								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Description','funiro' ), $this->id, 'customizer_repeater_text_control' ),
 								'class' => 'customizer-repeater-text-control '."$funiro_limit".'',
 								'type'  => apply_filters('funiro_repeater_input_types_filter', 'textarea', $this->id, 'customizer_repeater_text_control' ),
 							), $text);
@@ -303,7 +303,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						if($this->customizer_repeater_button_text_control){
 							$this->input_control(array(
 							'label' => apply_filters('repeater_input_labels_filter', esc_html__('Button Text',
-							'teczilla'), $this->id, 'customizer_repeater_button_text_control'),
+							'funiro'), $this->id, 'customizer_repeater_button_text_control'),
 							'class' => 'customizer-repeater-button-text-control '."$funiro_limit".'',
 							'type' => apply_filters('funiro_repeater_input_types_filter', '' , $this->id,
 							'customizer_repeater_button_text_control'),
@@ -313,7 +313,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						
 						if($this->customizer_repeater_link_control){
 							$this->input_control(array(
-								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link','teczilla' ), $this->id, 'customizer_repeater_link_control' ),
+								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link','funiro' ), $this->id, 'customizer_repeater_link_control' ),
 								'class' => 'customizer-repeater-link-control '."$funiro_limit".' '."$type_with_id".'',
 								'sanitize_callback' => 'esc_url_raw',
                                 'type'  => apply_filters('funiro_repeater_input_types_filter', '', $this->id, 'customizer_repeater_link_control' ),
@@ -333,7 +333,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						if($this->customizer_repeater_video_url_control){
 							$this->input_control(array(
 							'label' => apply_filters('repeater_input_labels_filter', esc_html__('Video Url',
-							'teczilla'), $this->id, 'customizer_repeater_video_url_control'),
+							'funiro'), $this->id, 'customizer_repeater_video_url_control'),
 							'class' => 'customizer-repeater-video-url-control',
 							'type'  => apply_filters('customizer_repeater_video_url_control', 'textarea', $this->id, 'customizer_repeater_video_url_control' ),
 							), $video_url);
@@ -353,7 +353,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						
 						if($this->customizer_repeater_color_control == true){
 							$this->input_control(array(
-								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Color','teczilla' ), $this->id, 'customizer_repeater_color_control' ),
+								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Color','funiro' ), $this->id, 'customizer_repeater_color_control' ),
 								'class' => 'customizer-repeater-color-control',
 								'type'  => apply_filters('funiro_repeater_input_types_filter', 'color', $this->id, 'customizer_repeater_color_control' ),
 								'sanitize_callback' => 'sanitize_hex_color'
@@ -363,7 +363,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						
 						if($this->customizer_repeater_shortcode_control==true){
 							$this->input_control(array(
-								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Shortcode','teczilla' ), $this->id, 'customizer_repeater_shortcode_control' ),
+								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Shortcode','funiro' ), $this->id, 'customizer_repeater_shortcode_control' ),
 								'class' => 'customizer-repeater-shortcode-control',
                                 'type'  => apply_filters('funiro_repeater_input_types_filter', '', $this->id, 'customizer_repeater_shortcode_control' ),
 							), $shortcode);
@@ -371,7 +371,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						
 						if($this->customizer_repeater_designation_control==true){
 							$this->input_control(array(
-								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Designation','teczilla' ), $this->id, 'customizer_repeater_designation_control' ),
+								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Designation','funiro' ), $this->id, 'customizer_repeater_designation_control' ),
 								'class' => 'customizer-repeater-designation-control '."$funiro_limit".'',
 								'type'  => apply_filters('funiro_repeater_input_types_filter', 'textarea', $this->id, 'customizer_repeater_designation_control' ),
 							), $designation);
@@ -387,7 +387,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						<button type="button" class="social-repeater-general-control-remove-field" <?php if ( $it == 0 ) {
 							echo 'style="display:none;"';
 						} ?>>
-							<?php esc_html_e( 'Delete field', 'teczilla' ); ?>
+							<?php esc_html_e( 'Delete field', 'funiro' ); ?>
 						</button>
 
 					</div>
@@ -417,7 +417,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						
 					if($this->customizer_repeater_color_control==true){
 						$this->input_control(array(
-							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Color','teczilla' ), $this->id, 'customizer_repeater_color_control' ),
+							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Color','funiro' ), $this->id, 'customizer_repeater_color_control' ),
 							'class' => 'customizer-repeater-color-control',
 							'type'  => apply_filters('funiro_repeater_input_types_filter', 'color', $this->id, 'customizer_repeater_color_control' ),
 							'sanitize_callback' => 'sanitize_hex_color'
@@ -425,21 +425,21 @@ class Funiro_Repeater extends WP_Customize_Control {
 					}
 					if ( $this->customizer_repeater_title_control == true ) {
 						$this->input_control( array(
-							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Title','teczilla' ), $this->id, 'customizer_repeater_title_control' ),
+							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Title','funiro' ), $this->id, 'customizer_repeater_title_control' ),
 							'class' => 'customizer-repeater-title-control',
                             'type'  => apply_filters('funiro_repeater_input_types_filter', '', $this->id, 'customizer_repeater_title_control' ),
 						) );
 					}
 					if ( $this->customizer_repeater_subtitle_control == true ) {
 						$this->input_control( array(
-							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Subtitle','teczilla' ), $this->id, 'customizer_repeater_subtitle_control' ),
+							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Subtitle','funiro' ), $this->id, 'customizer_repeater_subtitle_control' ),
 							'class' => 'customizer-repeater-subtitle-control',
                             'type'  => apply_filters('funiro_repeater_input_types_filter', '', $this->id, 'customizer_repeater_subtitle_control' ),
 						) );
 					}
 					if ( $this->customizer_repeater_text_control == true ) {
 						$this->input_control( array(
-							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Description','teczilla' ), $this->id, 'customizer_repeater_text_control' ),
+							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Description','funiro' ), $this->id, 'customizer_repeater_text_control' ),
 							'class' => 'customizer-repeater-text-control',
 							'type'  => apply_filters('funiro_repeater_input_types_filter', 'textarea', $this->id, 'customizer_repeater_text_control' ),
 						) );
@@ -448,7 +448,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 					if($this->customizer_repeater_button_text_control){
 							$this->input_control(array(
 							'label' => apply_filters('repeater_input_labels_filter', esc_html__('Button Text',
-							'teczilla'), $this->id, 'customizer_repeater_button_text_control'),
+							'funiro'), $this->id, 'customizer_repeater_button_text_control'),
 							'class' => 'customizer-repeater-button-text-control',
 							'type' => apply_filters('funiro_repeater_input_types_filter', '' , $this->id,
 							'customizer_repeater_button_text_control'),
@@ -457,7 +457,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						
 					if ( $this->customizer_repeater_link_control == true ) {
 						$this->input_control( array(
-							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link','teczilla' ), $this->id, 'customizer_repeater_link_control' ),
+							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link','funiro' ), $this->id, 'customizer_repeater_link_control' ),
 							'class' => 'customizer-repeater-link-control',
                             'type'  => apply_filters('funiro_repeater_input_types_filter', '', $this->id, 'customizer_repeater_link_control' ),
 						) );
@@ -476,7 +476,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 					if($this->customizer_repeater_video_url_control){
 							$this->input_control(array(
 							'label' => apply_filters('repeater_input_labels_filter', esc_html__('Video Url',
-							'teczilla'), $this->id, 'customizer_repeater_video_url_control'),
+							'funiro'), $this->id, 'customizer_repeater_video_url_control'),
 							'class' => 'customizer-repeater-video-url-control',
 							'type'  => apply_filters('customizer_repeater_video_url_control', 'textarea', $this->id, 'customizer_repeater_video_url_control' ),
 							));
@@ -486,7 +486,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 					
 					if ( $this->customizer_repeater_shortcode_control == true ) {
 						$this->input_control( array(
-							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Shortcode','teczilla' ), $this->id, 'customizer_repeater_shortcode_control' ),
+							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Shortcode','funiro' ), $this->id, 'customizer_repeater_shortcode_control' ),
 							'class' => 'customizer-repeater-shortcode-control',
                             'type'  => apply_filters('funiro_repeater_input_types_filter', '', $this->id, 'customizer_repeater_shortcode_control' ),
 						) );
@@ -495,7 +495,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 					
 					if ( $this->customizer_repeater_designation_control == true ) {
 						$this->input_control( array(
-							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Designation','teczilla' ), $this->id, 'customizer_repeater_designation_control' ),
+							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Designation','funiro' ), $this->id, 'customizer_repeater_designation_control' ),
 							'class' => 'customizer-repeater-designation-control',
 							'type'  => apply_filters('funiro_repeater_input_types_filter', 'textarea', $this->id, 'customizer_repeater_designation_control' ),
 						) );
@@ -506,7 +506,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 					} ?>
 					<input type="hidden" class="social-repeater-box-id">
 					<button type="button" class="social-repeater-general-control-remove-field button" style="display:none;">
-						<?php esc_html_e( 'Delete field', 'teczilla' ); ?>
+						<?php esc_html_e( 'Delete field', 'funiro' ); ?>
 					</button>
 				</div>
 			</div>
@@ -542,7 +542,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 	private function testimonila_check($value='no', $class='', $type_with_id=''){
 			?>
 		<div class="customize-control-title">
-		<?php esc_html_e('Open link in new tab:','teczilla'); ?>
+		<?php esc_html_e('Open link in new tab:','funiro'); ?>
 		<span class="switch">
 		<input type="checkbox" name="custom_checkbox" value="yes" <?php if($value=='yes'){echo 'checked';}?> class="customizer-repeater-checkbox <?php echo esc_attr($class);?> <?php echo esc_attr($type_with_id);?>">
 		</span>
@@ -553,13 +553,13 @@ class Funiro_Repeater extends WP_Customize_Control {
 	private function icon_picker_control($value = '', $class='', $show = ''){ ?>
 		<div class="social-repeater-general-control-icon" <?php if( $show === 'customizer_repeater_image' || $show === 'customizer_repeater_none' ) { echo 'style="display:none;"'; } ?>>
             <span class="customize-control-title">
-                <?php esc_html_e('Icon','teczilla'); ?>
+                <?php esc_html_e('Icon','funiro'); ?>
             </span>
 			<span class="description customize-control-description">
                 <?php
                 echo sprintf(
-	                esc_html__( 'Note: Some icons may not be displayed here. You can see the full list of icons at %1$s.', 'teczilla' ),
-	                sprintf( '<a href="%1$s" rel="nofollow">%s</a>', esc_html__( 'http://fontawesome.io/icons/', 'teczilla' ) )
+	                esc_html__( 'Note: Some icons may not be displayed here. You can see the full list of icons at %1$s.', 'funiro' ),
+	                sprintf( '<a href="%1$s" rel="nofollow">%s</a>', esc_html__( 'http://fontawesome.io/icons/', 'funiro' ) )
                 ); ?>
             </span>
 			<div class="input-group icp-container">
@@ -576,10 +576,10 @@ class Funiro_Repeater extends WP_Customize_Control {
 	private function image_control($value = '', $show = ''){ ?>
 		<div class="customizer-repeater-image-control" <?php if( $show === 'customizer_repeater_image'  || $show === 'customizer_repeater_none' ) { echo 'style="display:none;"'; } ?>>
             <span class="customize-control-title">
-                <?php esc_html_e('Image','teczilla')?>
+                <?php esc_html_e('Image','funiro')?>
             </span>
 			<input type="text" class="widefat custom-media-url" value="<?php echo esc_attr( $value ); ?>">
-			<input type="button" class="button button-secondary customizer-repeater-custom-media-button" value="<?php esc_attr_e( 'Upload Image','teczilla' ); ?>" />
+			<input type="button" class="button button-secondary customizer-repeater-custom-media-button" value="<?php esc_attr_e( 'Upload Image','funiro' ); ?>" />
 		</div>
 		<?php
 	}
@@ -588,27 +588,27 @@ class Funiro_Repeater extends WP_Customize_Control {
 	private function slide_format($value='customizer_repeater_slide_format_standard'){?>
 	
 		<span class="customize-control-title">
-		<?php esc_html_e('Slide Format','teczilla'); ?>
+		<?php esc_html_e('Slide Format','funiro'); ?>
 		</span>
 		<select class="customizer-repeater-slide-format">
 			<option value="customizer_repeater_slide_format_standard" <?php selected($value,'customizer_repeater_slide_format_standard');?>>
-			<?php esc_html_e('Standard','teczilla') ?>
+			<?php esc_html_e('Standard','funiro') ?>
 			</option>
 			
 			<option value="customizer_repeater_slide_format_aside" <?php selected($value,'customizer_repeater_slide_format_aside');?>>
-			<?php esc_html_e('Aside','teczilla') ?>
+			<?php esc_html_e('Aside','funiro') ?>
 			</option>
 			
 			<option value="customizer_repeater_slide_format_quote" <?php selected($value,'customizer_repeater_slide_format_quote');?>>
-			<?php esc_html_e('Quote','teczilla') ?>
+			<?php esc_html_e('Quote','funiro') ?>
 			</option>
 			
 			<option value="customizer_repeater_slide_format_status" <?php selected($value,'customizer_repeater_slide_format_status');?>>
-			<?php esc_html_e('Status','teczilla') ?>
+			<?php esc_html_e('Status','funiro') ?>
 			</option>
 			
 			<option value="customizer_repeater_slide_forma_video" <?php selected($value,'customizer_repeater_slide_forma_video');?>>
-			<?php esc_html_e('Video','teczilla') ?>
+			<?php esc_html_e('Video','funiro') ?>
 			</option>
 			
 		</select>
@@ -618,13 +618,13 @@ class Funiro_Repeater extends WP_Customize_Control {
 
 	private function icon_type_choice($value='customizer_repeater_icon', $funiro_limit=''){ ?>
 		<span class="customize-control-title">
-            <?php esc_html_e('Image type','teczilla');?>
+            <?php esc_html_e('Image type','funiro');?>
         </span>
 		<select class="customizer-repeater-image-choice">
-			<option value="customizer_repeater_icon" <?php selected($value,'customizer_repeater_icon');?>><?php esc_html_e('Icon','teczilla'); ?></option>
-			<option value="customizer_repeater_image" <?php selected($value,'customizer_repeater_image');?>><?php esc_html_e('Image','teczilla'); ?></option>
+			<option value="customizer_repeater_icon" <?php selected($value,'customizer_repeater_icon');?>><?php esc_html_e('Icon','funiro'); ?></option>
+			<option value="customizer_repeater_image" <?php selected($value,'customizer_repeater_image');?>><?php esc_html_e('Image','funiro'); ?></option>
 
-			<option value="customizer_repeater_none" <?php selected($value,'customizer_repeater_none');?>><?php esc_html_e('None','teczilla'); ?></option>
+			<option value="customizer_repeater_none" <?php selected($value,'customizer_repeater_none');?>><?php esc_html_e('None','funiro'); ?></option>
 		</select>
 		<?php
 	}
@@ -632,7 +632,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 	private function repeater_control($value = '', $funiro_limit='', $type_with_id=''){
 		$social_repeater = array();
 		$show_del        = 0; ?>
-		<span class="customize-control-title"><?php esc_html_e( 'Social icons', 'teczilla' ); ?></span>
+		<span class="customize-control-title"><?php esc_html_e( 'Social icons', 'funiro' ); ?></span>
 		<?php
 		if(!empty($value)) {
 			$social_repeater = json_decode( html_entity_decode( $value ), true );
@@ -646,15 +646,15 @@ class Funiro_Repeater extends WP_Customize_Control {
 					</div>
 					<?php get_template_part( $this->customizer_icon_container ); ?>
 					<input type="text" class="customizer-repeater-social-repeater-link"
-					       placeholder="<?php esc_attr_e( 'Link', 'teczilla' ); ?>">
+					       placeholder="<?php esc_attr_e( 'Link', 'funiro' ); ?>">
 					<input type="hidden" class="customizer-repeater-social-repeater-id" value="">
 					<button class="social-repeater-remove-social-item" style="display:none">
-						<?php esc_html_e( 'Remove Icon', 'teczilla' ); ?>
+						<?php esc_html_e( 'Remove Icon', 'funiro' ); ?>
 					</button>
 				</div>
 				<input type="hidden" id="social-repeater-socials-repeater-colector" class="social-repeater-socials-repeater-colector" value=""/>
 			</div>
-			<button class="social-repeater-add-social-item button-secondary"><?php esc_html_e( 'Add Icon', 'teczilla' ); ?></button>
+			<button class="social-repeater-add-social-item button-secondary"><?php esc_html_e( 'Add Icon', 'funiro' ); ?></button>
 			<?php
 		} else { ?>
 			<div class="customizer-repeater-social-repeater">
@@ -668,7 +668,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						</div>
 						<?php get_template_part( $this->customizer_icon_container ); ?>
 						<input type="text" class="customizer-repeater-social-repeater-link team_linkdata_<?php echo esc_attr($funiro_limit);?> <?php echo esc_attr($type_with_id);?>"
-						       placeholder="<?php esc_attr_e( 'Link', 'teczilla' ); ?>"
+						       placeholder="<?php esc_attr_e( 'Link', 'funiro' ); ?>"
 						       value="<?php if ( ! empty( $social_icon['link'] ) ) {
 							       echo esc_url( $social_icon['link'] );
 						       } ?>">
@@ -679,7 +679,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 						<button class="social-repeater-remove-social-item"
 						        style="<?php if ( $show_del == 1 ) {
 							        echo "display:none";
-						        } ?>"><?php esc_html_e( 'Remove Icon', 'teczilla' ); ?></button>
+						        } ?>"><?php esc_html_e( 'Remove Icon', 'funiro' ); ?></button>
 					</div>
 					<?php
 				} ?>
@@ -687,7 +687,7 @@ class Funiro_Repeater extends WP_Customize_Control {
 				       class="social-repeater-socials-repeater-colector"
 				       value="<?php echo esc_textarea( html_entity_decode( $value ) ); ?>" />
 			</div>
-			<button class="social-repeater-add-social-item button-secondary <?php echo esc_attr($funiro_limit);?> <?php echo esc_attr($type_with_id);?>"><?php esc_html_e( 'Add Icon', 'teczilla' ); ?></button>
+			<button class="social-repeater-add-social-item button-secondary <?php echo esc_attr($funiro_limit);?> <?php echo esc_attr($type_with_id);?>"><?php esc_html_e( 'Add Icon', 'funiro' ); ?></button>
 			<?php
 		}
 	}

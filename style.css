@@ -1339,104 +1339,32 @@ nav a.page-numbers:hover{
 --------------------------------------------------------------*/
 .funiro-gallery-area{
 	padding-bottom: 44px;
-	max-width: 1400px;
 	margin: 0 auto;
 }
-.funiro-gallery-area .funiro-section-sub-title{
-	position: relative;
-	top: 75px;
-}
-.funiro-gallery-area .funiro-section-title {
-	position: relative;
-	top: 75px;
-	margin-bottom: 0;
-}
 .funiro-gallery-grid {
-	display: grid;
-	gap: 16px;
-	grid-template-columns: 3fr 1fr 2fr;
-	grid-template-rows: 1fr 1fr;
-	list-style-type: none;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 30px;
+}
+.funiro-gallery-grid .gallery-item{
 	overflow: hidden;
+	margin-bottom: 30px;
+	width: 292px;
+	height: 292px;
+}
+.funiro-gallery-grid .gallery-item img{
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: center center;
+	transition: 0.3s ease-in-out;
+}
+.funiro-gallery-grid .gallery-item:hover img{
+	transform: scale(1.2);
 }
 
-.funiro-gallery-grid .funiro-img{
-  object-fit: cover;
-  gap: 16px;
-}
 
-.funiro-gallery-grid .gallery-1 {
-	grid-column: 1;
-	transform: translate(-73px);
-}
-
-.funiro-gallery-grid .gallery-1,
-.funiro-gallery-grid .gallery-2  {
-	align-self: end;
-	grid-row: 1;
-}
-
-.funiro-gallery-grid .gallery-2 {
-	grid-column: 2/-4;
-	justify-self: end;
-}
-
-.funiro-gallery-grid .gallery-3 {
-	grid-column: 2;
-	grid-row: 1/2;
-	transform: translateY(196px);
-  height: 90%;
-}
-
-.funiro-gallery-grid .gallery-5,
-.funiro-gallery-grid .gallery-4 {
-	align-self: end;
-	grid-column: 3;
-	grid-row: 1;
-}
-
-.funiro-gallery-grid .gallery-4 {
-	justify-self: start;
-	transform: translateY(51px);
-}
-
-.funiro-gallery-grid .gallery-5 {
-	transform: translate(307px, 51px);
-}
-
-.funiro-gallery-grid .gallery-7,
-.funiro-gallery-grid .gallery-6  {
-	align-self: start;
-	grid-row: 2;
-}
-
-.funiro-gallery-grid .gallery-6  {
-	grid-column: 1;
-	transform: translate(-73px);
-}
-
-.funiro-gallery-grid .gallery-7{
-  grid-column: 2/-4;
-	justify-self: end;
-}
-
-.funiro-gallery-grid .gallery-8, 
-.funiro-gallery-grid .gallery-9 {
-	align-self: start;
-	grid-row: 2;
-}
-
-.funiro-gallery-grid .gallery-8 {
-	grid-column: 3;
-	justify-self: start;
-	transform: translateY(51px);
-}
-
-.funiro-gallery-grid .gallery-9 {
-	grid-column: -1/-2;
-	justify-self: end;
-	transform: translate(12px, 51px);
-}
 /*--------------------------------------------------------------
   Foooter
 --------------------------------------------------------------*/

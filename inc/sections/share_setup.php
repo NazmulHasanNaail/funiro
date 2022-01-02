@@ -25,14 +25,17 @@ function share_setup_section( $atts, $content = null ) {
     <?php if(!empty($share_setup_items_array)): ?>
     <div class="funiro-gallery-grid">
         <?php 
-        $i = 1; 
 			foreach($share_setup_items_array  as $value){
 				$img_url = $value->image_url;
 				$title = $value->title;
 
                 
 			?>
-        <img class="wow fadeInUp funiro-img gallery-<?php echo $i++ ?>" src="<?php echo esc_url($img_url); ?>" alt="">
+        <div class="wow fadeInUp gallery-item">
+          <a href="<?php echo esc_url($img_url); ?>" data-fancybox="gallery">
+            <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($title); ?>">
+          </a>
+        </div>
 
         <?php ; } ?>
     </div>

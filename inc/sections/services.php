@@ -1,8 +1,8 @@
 <?php
 function services_section( $atts, $content = null ) {
 	$services = shortcode_atts( array(
-		'attr_1' => 'attribute 1 default',
-		'attr_2' => 'attribute 2 default',
+		'show' => ' ',
+		'id' => 0,
 		// ...etc
 	), $atts );
 
@@ -33,7 +33,7 @@ function services_section( $atts, $content = null ) {
 							if( $choice == 'customizer_repeater_icon' && !empty($icon)){
 								?>
 								<i class="fab <?php echo esc_attr($icon, 'funiro'); ?>"></i>
-								<?
+								<?php
 							}
 							if( $choice == 'customizer_repeater_image' && !empty($img_url)){
 								?>

@@ -40,7 +40,10 @@
                     </svg>
                 </div> -->
                 <div class="cart">
-                  <?php funiro_woocommerce_header_cart();  ?>
+                  <?php 
+                  if ( class_exists( 'WooCommerce' ) ){                  
+                      funiro_woocommerce_header_cart(); 
+                    } ?>
                 </div>
                 <?php
                 $user = wp_get_current_user();
