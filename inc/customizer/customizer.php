@@ -102,14 +102,106 @@ function funiro_customize_register( $wp_customize ) {
 			'type'      => 'checkbox'
 		 )); //Box Layout Options 
 
+	    //Sidebar layout settings
+		 $wp_customize->add_section('funiro_layout_sidebars',array(
+			'title' => esc_html__('Sidebar','funiro'),
+			'panel' => 'funiro_panelsettings',
+			'priority'       => 2,
+			));
+		 $wp_customize->add_setting('funiro_blog_temp_layout', array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => 'rightsidebar',
+        ));
+		$wp_customize->add_control('funiro_blog_temp_layout', array(
+			'type'        => 'select',
+			'label'       => esc_html__('Blog Template Layout', 'funiro'),
+			'description' => esc_html__('This will be apply for blog template layout', 'funiro'),
+			'section'     => 'funiro_layout_sidebars',
+			'choices'     => array(
+				'rightsidebar' => esc_html__('Right sidebar', 'funiro'),
+				'leftsidebar'  => esc_html__('Left sidebar', 'funiro'),
+				'fullwidth'    => esc_html__('No sidebar', 'funiro'),
+			),
+		));//blog sidebar layout
+
+		$wp_customize->add_setting('funiro_single_blog_temp_layout', array(
+			'sanitize_callback' => 'sanitize_text_field',
+			'default'           => 'rightsidebar',
+		));
+		$wp_customize->add_control('funiro_single_blog_temp_layout', array(
+			'type'        => 'select',
+			'label'       => esc_html__('Single Post Template Layout', 'funiro'),
+			'description' => esc_html__('This will be apply for single Post template layout', 'funiro'),
+			'section'     => 'funiro_layout_sidebars',
+			'choices'     => array(
+				'rightsidebar' => esc_html__('Right sidebar', 'funiro'),
+				'leftsidebar'  => esc_html__('Left sidebar', 'funiro'),
+				'fullwidth'    => esc_html__('No sidebar', 'funiro'),
+			),
+		));//blog single sidebar layout
+
+		$wp_customize->add_setting('funiro_page_temp_layout', array(
+			'sanitize_callback' => 'sanitize_text_field',
+			'default'           => 'rightsidebar',
+		));
+		$wp_customize->add_control('funiro_page_temp_layout', array(
+			'type'        => 'select',
+			'label'       => esc_html__('Page Template Layout', 'funiro'),
+			'description' => esc_html__('This will be apply for Page template layout', 'funiro'),
+			'section'     => 'funiro_layout_sidebars',
+			'choices'     => array(
+				'rightsidebar' => esc_html__('Right sidebar', 'funiro'),
+				'leftsidebar'  => esc_html__('Left sidebar', 'funiro'),
+				'fullwidth'    => esc_html__('No sidebar', 'funiro'),
+			),
+		));//page sidebar layout
+
 
 		//Blog Posts Settings
 		$wp_customize->add_section('funiro_blog_options',array(
-			'title' => __('Blog Options','funiro'),			
-			'priority' => 2,
+			'title' => __('Blog','funiro'),			
+			'priority' => 3,
 			'panel' => 	'funiro_panelsettings', 	         
-		));		
+		));	
+
+		$wp_customize->add_setting( 'funiro_blog_post_column', array(
+			'capability'        => 'edit_theme_options',
+			'default'           => '1',
+			'sanitize_callback' => 'sanitize_text_field'
+		));
+		$wp_customize->add_control( 'funiro_blog_post_column', array(
+			'label'         => esc_html__( 'Blog Post Column', 'funiro' ),
+			'description' => esc_html__('This will be apply for Blog Post layout', 'funiro'),
+			'section'       => 'funiro_blog_options',
+			'type'           => 'select',
+			'settings'      => 'funiro_blog_post_column',
+			'priority'      => 10,
+			'choices'     => array(
+				'1'  => esc_html__( '1 Column', 'funiro' ),
+				'2'  => esc_html__( '2 Column', 'funiro' ),
+				'3'  => esc_html__( '3 Column', 'funiro' ),
+				'4'  => esc_html__( '4 Column', 'funiro' ),
+			),
+		));//Blog Post column
+		$wp_customize->add_setting( 'funiro_thumbnail_width', array(
+			'default'              => 50,
+			'type'                 => 'theme_mod',
+			'transport' 		   => 'refresh',
+			'sanitize_callback'    => 'funiro_sanitize_excerptrange',		
+		) );
 		
+		$wp_customize->add_control( 'funiro_thumbnail_width', array(
+			'label'       => __( 'Post thumbnail width','funiro' ),
+			'description' => esc_html__('This will be apply for Blog Post Thumbnail', 'funiro'),
+			'section'     => 'funiro_blog_options',
+			'type'        => 'range',
+			'settings'    => 'funiro_thumbnail_width','input_attrs' => array(
+				'step'             => 1,
+				'min'              => 0,
+				'max'              => 100,
+			),
+		) );
+
 		$wp_customize->add_setting('funiro_hide_blogdate',array(	
 			'sanitize_callback' => 'funiro_sanitize_checkbox',
 		));	 

@@ -17,7 +17,25 @@ get_header();
 <main id="primary" class="site-main">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-8">
+
+		<?php 
+			$blog_temp_layout =  get_theme_mod('funiro_blog_temp_layout', esc_html('rightsidebar', 'funiro'));
+			if($blog_temp_layout == 'leftsidebar'){
+				?>
+				<div class="col-lg-4">
+					<?php
+					get_sidebar();
+					?>
+				</div><!--sidebar-->
+				<?php
+			}
+			if($blog_temp_layout == 'fullwidth'){
+				$col = 12;
+			}else{
+				$col = 8;
+			}
+			?>
+			<div class="col-lg-<?php echo esc_attr($col) ?>">
 				<?php
 				if ( have_posts() ) :
 				?>
@@ -51,13 +69,21 @@ get_header();
 				endif;
 				?>
 			</div><!-- colo-md-8 -->
+
+			<?php 
+			if($blog_temp_layout == 'rightsidebar'){
+			?>
 			<div class="col-lg-4">
 				<?php
 				get_sidebar();
 				?>
 			</div><!--sidebar-->
+			<?php
+			}
+			?>
+
 		</div>
-	<div>
+	</div>
 </main><!-- #main -->
 
 <?php

@@ -8,7 +8,32 @@
  */
 
 $classes = join( '  ', get_post_class() );
+$blog_post_column = get_theme_mod('funiro_blog_post_column', esc_attr(1));
+$thumbnail_width = get_theme_mod('funiro_thumbnail_width', esc_attr(50));
+
 ?>
+<style type="text/css">
+	@media(min-width:991px){
+	.blog-list{
+		display: grid;
+		grid-column-gap: 30px;
+		grid-template-columns: repeat(<?php echo $blog_post_column ?>, 1fr);
+	}
+	article.blog-posts .post-thumbnail{
+		width:<?php echo esc_attr($thumbnail_width) ?>%;
+	}
+
+	<?php if($thumbnail_width == 100){
+		?>
+		article.blog-posts .entry-content{
+			padding-top:20px;
+			padding-left: 0;	
+		}
+		<?php
+	} ?>
+
+}
+</style>	
 <article id="post-<?php the_ID(); ?>" class="wow fadeInUp <?php if( ! is_singular()){echo "blog-posts "; } echo esc_attr($classes);   ?>">
 	<?php 
 	if( get_theme_mod( 'funiro_hide_postfeatured_image' ) == '') { 

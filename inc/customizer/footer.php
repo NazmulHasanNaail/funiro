@@ -35,6 +35,7 @@ $wp_customize->add_control( 'funiro_footer_widget1_column', array(
         '4'  => esc_html__( 'Col 4', 'funiro' ),
         '5'  => esc_html__( 'Col 5', 'funiro' ),
         '6'  => esc_html__( 'Col 6', 'funiro' ),
+        '12'  => esc_html__( 'Col 12', 'funiro' ),
     ),
 ));//Footer widget 1 column
 
@@ -56,6 +57,7 @@ $wp_customize->add_control( 'funiro_footer_widget2_column', array(
         '4'  => esc_html__( 'Col 4', 'funiro' ),
         '5'  => esc_html__( 'Col 5', 'funiro' ),
         '6'  => esc_html__( 'Col 6', 'funiro' ),
+        '12'  => esc_html__( 'Col 12', 'funiro' ),
     ),
 ));//Footer widget 2 column
 
@@ -77,6 +79,7 @@ $wp_customize->add_control( 'funiro_footer_widget3_column', array(
         '4'  => esc_html__( 'Col 4', 'funiro' ),
         '5'  => esc_html__( 'Col 5', 'funiro' ),
         '6'  => esc_html__( 'Col 6', 'funiro' ),
+        '12'  => esc_html__( 'Col 12', 'funiro' ),
     ),
 ));//Footer widget 3 column
 
@@ -98,6 +101,7 @@ $wp_customize->add_control( 'funiro_footer_widget4_column', array(
         '4'  => esc_html__( 'Col 4', 'funiro' ),
         '5'  => esc_html__( 'Col 5', 'funiro' ),
         '6'  => esc_html__( 'Col 6', 'funiro' ),
+        '12'  => esc_html__( 'Col 12', 'funiro' ),
     ),
 ));//Footer widget 4 column
 
@@ -119,6 +123,7 @@ $wp_customize->add_control( 'funiro_footer_widget5_column', array(
         '4'  => esc_html__( 'Col 4', 'funiro' ),
         '5'  => esc_html__( 'Col 5', 'funiro' ),
         '6'  => esc_html__( 'Col 6', 'funiro' ),
+        '12'  => esc_html__( 'Col 12', 'funiro' ),
     ),
 ));//Footer widget 5 column
 

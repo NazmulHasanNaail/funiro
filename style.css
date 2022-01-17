@@ -905,6 +905,7 @@ article.blog-posts:hover .post-thumbnail img{
 @media(min-width:991px){
 	article.blog-posts{
 		display: flex;
+		flex-wrap: wrap;
 	}
 	article.blog-posts:last-child,
     article.search-posts:last-child{
@@ -915,7 +916,7 @@ article.blog-posts:hover .post-thumbnail img{
 		width: 50%;
 	}
 	article.blog-posts .entry-content{
-		width: 50%;
+		flex: 1;
 		padding-left: 30px;
 		padding-top: 0;
 	}
