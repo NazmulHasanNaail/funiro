@@ -46,6 +46,7 @@ $wp_customize->add_control('funiro_share_setup_section_sub_title',array(
 
  if ( class_exists( 'Funiro_Repeater' ) ) {
     $wp_customize->add_setting( 'funiro_share_sutup_item', array(
+        'sanitize_callback' => 'sanitize_text_field'
     ) );
 
     $wp_customize->add_control( new Funiro_Repeater( $wp_customize, 'funiro_share_sutup_item', array(

@@ -20,6 +20,7 @@ $wp_customize->add_control( 'funiro_hide_services', array(
 
 if ( class_exists( 'Funiro_Repeater' ) ) {
     $wp_customize->add_setting( 'funiro_services_item', array(
+        'sanitize_callback' => 'sanitize_text_field'
     ) );
 
     $wp_customize->add_control( new Funiro_Repeater( $wp_customize, 'funiro_services_item', array(

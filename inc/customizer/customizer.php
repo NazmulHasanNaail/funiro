@@ -43,6 +43,7 @@ function funiro_customize_register( $wp_customize ) {
 	
 	}
 
+	
 	function funiro_post_choices() {
 		$posts = get_posts( array( 'numberposts' => -1 ) );
 		$choices = array();
@@ -105,7 +106,7 @@ function funiro_customize_register( $wp_customize ) {
 		//Blog Posts Settings
 		$wp_customize->add_section('funiro_blog_options',array(
 			'title' => __('Blog Options','funiro'),			
-			'priority' => null,
+			'priority' => 2,
 			'panel' => 	'funiro_panelsettings', 	         
 		));		
 		
@@ -192,14 +193,6 @@ function funiro_customize_register( $wp_customize ) {
 			'title' => __( 'Funiro Front Page Settings', 'funiro' ),		
 		) );
 
-
-		//==Footer page Pannel==
-		$wp_customize->add_panel( 'funiro_footer_panel_settings', array(
-			'priority' => 4,
-			'capability' => 'edit_theme_options',
-			'theme_supports' => '',
-			'title' => __( 'Funiro footer Settings', 'funiro' ),		
-		) );
 
 
 		class Funiro_Dropdown_Chooser extends WP_Customize_Control{

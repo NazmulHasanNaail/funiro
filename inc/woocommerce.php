@@ -322,3 +322,94 @@ add_filter('post_class', function($classes, $class, $product_id) {
         $classes = array_merge(['wow ','fadeInUp'], $classes);
     return $classes;
 },10,3);
+
+
+
+/**
+ *adding wishlist on header
+ *
+ * @link https://support.yithemes.com/hc/en-us/articles/115001372967-Wishlist-How-to-count-number-of-products-wishlist-in-ajax
+ */ 
+if ( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_get_items_count' ) ) {
+	function yith_wcwl_get_items_count() {
+	  ob_start();
+	  ?>
+		<div class="wishlist">		
+			<a href="<?php echo esc_url( YITH_WCWL()->get_wishlist_url() ); ?>" class="wishlist-content">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+					<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+				</svg>
+				<span class="yith-wcwl-items-count">
+					<?php echo esc_html( yith_wcwl_count_all_products() ); ?>
+				</span>
+			</a>
+		</div>
+	  <?php
+	  return ob_get_clean();
+	}
+  
+	add_shortcode( 'yith_wcwl_items_count', 'yith_wcwl_get_items_count' );
+  }
+  
+  if ( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_ajax_update_count' ) ) {
+	function yith_wcwl_ajax_update_count() {
+	  wp_send_json( array(
+		'count' => yith_wcwl_count_all_products()
+	  ) );
+	}
+  
+	add_action( 'wp_ajax_yith_wcwl_update_wishlist_count', 'yith_wcwl_ajax_update_count' );
+	add_action( 'wp_ajax_nopriv_yith_wcwl_update_wishlist_count', 'yith_wcwl_ajax_update_count' );
+  }
+  
+  if ( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_enqueue_custom_script' ) ) {
+	function yith_wcwl_enqueue_custom_script() {
+	  wp_add_inline_script(
+		'jquery-yith-wcwl',
+		"
+		  jQuery( function( $ ) {
+			$( document ).on( 'added_to_wishlist removed_from_wishlist', function() {
+			  $.get( yith_wcwl_l10n.ajax_url, {
+				action: 'yith_wcwl_update_wishlist_count'
+			  }, function( data ) {
+				$('.yith-wcwl-items-count').html( data.count );
+			  } );
+			} );
+		  } );
+		"
+	  );
+	}
+  
+	add_action( 'wp_enqueue_scripts', 'yith_wcwl_enqueue_custom_script', 20 );
+  }
+
+
+  /**
+ * Adding social share 
+ *
+ */
+function funiro_share_in_product_archives() {
+	?>
+	<ul class="product-social-share">
+		<li class="share-text">
+		  <i class="fas fa-share-alt"></i> Share
+		</li>
+		<li>
+			<div class="social-link">
+				<a target="_blank" href="http://facebook.com/share.php?u=<?php the_permalink(); ?>"><i class="fab fa-facebook-f"></i></a>
+				<a target="_blank" href="http://twitter.com/share?url=<?php the_permalink(); ?>"><i class="fab fa-twitter"></i></a>
+				<a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url={<?php the_permalink(); ?>}"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+		</li>
+	</ul>
+	<?php
+}
+add_action( 'woocommerce_after_shop_loop_item', 'funiro_share_in_product_archives', 20);
+
+//Reomeve woocommere shop page title
+add_filter('woocommerce_show_page_title', 'funiro_hide_shop_page_title');
+ 
+function funiro_hide_shop_page_title($title) {
+   if (is_shop()) $title = false;
+   return $title;
+}

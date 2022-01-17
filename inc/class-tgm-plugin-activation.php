@@ -34,224 +34,34 @@
 
 if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
-	/**
-	 * Automatic plugin installation and activation library.
-	 *
-	 * Creates a way to automatically install and activate plugins from within themes.
-	 * The plugins can be either bundled, downloaded from the WordPress
-	 * Plugin Repository or downloaded from another external source.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @package TGM-Plugin-Activation
-	 * @author  Thomas Griffin
-	 * @author  Gary Jones
-	 */
+
 	class TGM_Plugin_Activation {
-		/**
-		 * TGMPA version number.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @const string Version number.
-		 */
+
 		const TGMPA_VERSION = '2.6.1';
-
-		/**
-		 * Regular expression to test if a URL is a WP plugin repo URL.
-		 *
-		 * @const string Regex.
-		 *
-		 * @since 2.5.0
-		 */
 		const WP_REPO_REGEX = '|^http[s]?://wordpress\.org/(?:extend/)?plugins/|';
-
-		/**
-		 * Arbitrary regular expression to test if a string starts with a URL.
-		 *
-		 * @const string Regex.
-		 *
-		 * @since 2.5.0
-		 */
 		const IS_URL_REGEX = '|^http[s]?://|';
 
-		/**
-		 * Holds a copy of itself, so it can be referenced by the class name.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @var TGM_Plugin_Activation
-		 */
 		public static $instance;
-
-		/**
-		 * Holds arrays of plugin details.
-		 *
-		 * @since 1.0.0
-		 * @since 2.5.0 the array has the plugin slug as an associative key.
-		 *
-		 * @var array
-		 */
 		public $plugins = array();
-
-		/**
-		 * Holds arrays of plugin names to use to sort the plugins array.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @var array
-		 */
 		protected $sort_order = array();
-
-		/**
-		 * Whether any plugins have the 'force_activation' setting set to true.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @var bool
-		 */
 		protected $has_forced_activation = false;
-
-		/**
-		 * Whether any plugins have the 'force_deactivation' setting set to true.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @var bool
-		 */
 		protected $has_forced_deactivation = false;
 
-		/**
-		 * Name of the unique ID to hash notices.
-		 *
-		 * @since 2.4.0
-		 *
-		 * @var string
-		 */
 		public $id = 'tgmpa';
-
-		/**
-		 * Name of the query-string argument for the admin page.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @var string
-		 */
 		protected $menu = 'tgmpa-install-plugins';
 
-		/**
-		 * Parent menu file slug.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @var string
-		 */
 		public $parent_slug = 'themes.php';
-
-		/**
-		 * Capability needed to view the plugin installation menu item.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @var string
-		 */
 		public $capability = 'edit_theme_options';
-
-		/**
-		 * Default absolute path to folder containing bundled plugin zip files.
-		 *
-		 * @since 2.0.0
-		 *
-		 * @var string Absolute path prefix to zip file location for bundled plugins. Default is empty string.
-		 */
 		public $default_path = '';
-
-		/**
-		 * Flag to show admin notices or not.
-		 *
-		 * @since 2.1.0
-		 *
-		 * @var boolean
-		 */
 		public $has_notices = true;
-
-		/**
-		 * Flag to determine if the user can dismiss the notice nag.
-		 *
-		 * @since 2.4.0
-		 *
-		 * @var boolean
-		 */
 		public $dismissable = true;
-
-		/**
-		 * Message to be output above nag notice if dismissable is false.
-		 *
-		 * @since 2.4.0
-		 *
-		 * @var string
-		 */
 		public $dismiss_msg = '';
-
-		/**
-		 * Flag to set automatic activation of plugins. Off by default.
-		 *
-		 * @since 2.2.0
-		 *
-		 * @var boolean
-		 */
 		public $is_automatic = false;
-
-		/**
-		 * Optional message to display before the plugins table.
-		 *
-		 * @since 2.2.0
-		 *
-		 * @var string Message filtered by wp_kses_post(). Default is empty string.
-		 */
 		public $message = '';
-
-		/**
-		 * Holds configurable array of strings.
-		 *
-		 * Default values are added in the constructor.
-		 *
-		 * @since 2.0.0
-		 *
-		 * @var array
-		 */
 		public $strings = array();
-
-		/**
-		 * Holds the version of WordPress.
-		 *
-		 * @since 2.4.0
-		 *
-		 * @var int
-		 */
 		public $wp_version;
-
-		/**
-		 * Holds the hook name for the admin page.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @var string
-		 */
 		public $page_hook;
 
-		/**
-		 * Adds a reference of this object to $instance, populates default strings,
-		 * does the tgmpa_init action hook, and hooks in the interactions to init.
-		 *
-		 * {@internal This method should be `protected`, but as too many TGMPA implementations
-		 * haven't upgraded beyond v2.3.6 yet, this gives backward compatibility issues.
-		 * Reverted back to public for the time being.}}
-		 *
-		 * @since 1.0.0
-		 *
-		 * @see TGM_Plugin_Activation::init()
-		 */
 		public function __construct() {
 			// Set the current WordPress version.
 			$this->wp_version = $GLOBALS['wp_version'];
@@ -265,49 +75,13 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			add_action( 'init', array( $this, 'init' ) );
 		}
 
-		/**
-		 * Magic method to (not) set protected properties from outside of this class.
-		 *
-		 * {@internal hackedihack... There is a serious bug in v2.3.2 - 2.3.6  where the `menu` property
-		 * is being assigned rather than tested in a conditional, effectively rendering it useless.
-		 * This 'hack' prevents this from happening.}}
-		 *
-		 * @see https://github.com/TGMPA/TGM-Plugin-Activation/blob/2.3.6/tgm-plugin-activation/class-tgm-plugin-activation.php#L1593
-		 *
-		 * @since 2.5.2
-		 *
-		 * @param string $name  Name of an inaccessible property.
-		 * @param mixed  $value Value to assign to the property.
-		 * @return void  Silently fail to set the property when this is tried from outside of this class context.
-		 *               (Inside this class context, the __set() method if not used as there is direct access.)
-		 */
 		public function __set( $name, $value ) {
 			return;
 		}
 
-		/**
-		 * Magic method to get the value of a protected property outside of this class context.
-		 *
-		 * @since 2.5.2
-		 *
-		 * @param string $name Name of an inaccessible property.
-		 * @return mixed The property value.
-		 */
 		public function __get( $name ) {
 			return $this->{$name};
 		}
-
-		/**
-		 * Initialise the interactions between this class and WordPress.
-		 *
-		 * Hooks in three new methods for the class: admin_menu, notices and styles.
-		 *
-		 * @since 2.0.0
-		 *
-		 * @see TGM_Plugin_Activation::admin_menu()
-		 * @see TGM_Plugin_Activation::notices()
-		 * @see TGM_Plugin_Activation::styles()
-		 */
 		public function init() {
 			/**
 			 * By default TGMPA only loads on the WP back-end and not in an Ajax call. Using this filter
@@ -446,21 +220,6 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			}
 		}
 
-
-
-
-
-
-
-		/**
-		 * Hook in plugin action link filters for the WP native plugins page.
-		 *
-		 * - Prevent activation of plugins which don't meet the minimum version requirements.
-		 * - Prevent deactivation of force-activated plugins.
-		 * - Add update notice if update available.
-		 *
-		 * @since 2.5.0
-		 */
 		public function add_plugin_action_link_filters() {
 			foreach ( $this->plugins as $slug => $plugin ) {
 				if ( false === $this->can_plugin_activate( $slug ) ) {
@@ -477,44 +236,18 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			}
 		}
 
-		/**
-		 * Remove the 'Activate' link on the WP native plugins page if the plugin does not meet the
-		 * minimum version requirements.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @param array $actions Action links.
-		 * @return array
-		 */
 		public function filter_plugin_action_links_activate( $actions ) {
 			unset( $actions['activate'] );
 
 			return $actions;
 		}
 
-		/**
-		 * Remove the 'Deactivate' link on the WP native plugins page if the plugin has been set to force activate.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @param array $actions Action links.
-		 * @return array
-		 */
 		public function filter_plugin_action_links_deactivate( $actions ) {
 			unset( $actions['deactivate'] );
 
 			return $actions;
 		}
 
-		/**
-		 * Add a 'Requires update' link on the WP native plugins page if the plugin does not meet the
-		 * minimum version requirements.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @param array $actions Action links.
-		 * @return array
-		 */
 		public function filter_plugin_action_links_update( $actions ) {
 			$actions['update'] = sprintf(
 				'<a href="%1$s" title="%2$s" class="edit">%3$s</a>',
@@ -526,29 +259,6 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			return $actions;
 		}
 
-		/**
-		 * Handles calls to show plugin information via links in the notices.
-		 *
-		 * We get the links in the admin notices to point to the TGMPA page, rather
-		 * than the typical plugin-install.php file, so we can prepare everything
-		 * beforehand.
-		 *
-		 * WP does not make it easy to show the plugin information in the thickbox -
-		 * here we have to require a file that includes a function that does the
-		 * main work of displaying it, enqueue some styles, set up some globals and
-		 * finally call that function before exiting.
-		 *
-		 * Down right easy once you know how...
-		 *
-		 * Returns early if not the TGMPA page.
-		 *
-		 * @since 2.1.0
-		 *
-		 * @global string $tab Used as iframe div class names, helps with styling
-		 * @global string $body_id Used as the iframe body ID, helps with styling
-		 *
-		 * @return null Returns early if not the TGMPA page.
-		 */
 		public function admin_init() {
 			if ( ! $this->is_tgmpa_page() ) {
 				return;
@@ -572,38 +282,12 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			}
 		}
 
-		/**
-		 * Enqueue thickbox scripts/styles for plugin info.
-		 *
-		 * Thickbox is not automatically included on all admin pages, so we must
-		 * manually enqueue it for those pages.
-		 *
-		 * Thickbox is only loaded if the user has not dismissed the admin
-		 * notice or if there are any plugins left to install and activate.
-		 *
-		 * @since 2.1.0
-		 */
 		public function thickbox() {
 			if ( ! get_user_meta( get_current_user_id(), 'tgmpa_dismissed_notice_' . $this->id, true ) ) {
 				add_thickbox();
 			}
 		}
 
-		/**
-		 * Adds submenu page if there are plugin actions to take.
-		 *
-		 * This method adds the submenu page letting users know that a required
-		 * plugin needs to be installed.
-		 *
-		 * This page disappears once the plugin has been installed and activated.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @see TGM_Plugin_Activation::init()
-		 * @see TGM_Plugin_Activation::install_plugins_page()
-		 *
-		 * @return null Return early if user lacks capability to install a plugin.
-		 */
 		public function admin_menu() {
 			// Make sure privileges are correct to see the page.
 			if ( ! current_user_can( 'install_plugins' ) ) {
@@ -625,31 +309,10 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			$this->add_admin_menu( $args );
 		}
 
-		/**
-		 * Add the menu item.
-		 *
-		 * {@internal IMPORTANT! If this function changes, review the regex in the custom TGMPA
-		 * generator on the website.}}
-		 *
-		 * @since 2.5.0
-		 *
-		 * @param array $args Menu item configuration.
-		 */
 		protected function add_admin_menu( array $args ) {
 			$this->page_hook = add_theme_page( $args['page_title'], $args['menu_title'], $args['capability'], $args['menu_slug'], $args['function'] );
 		}
 
-		/**
-		 * Echoes plugin installation form.
-		 *
-		 * This method is the callback for the admin_menu method function.
-		 * This displays the admin page and form area where the user can select to install and activate the plugin.
-		 * Aborts early if we're processing a plugin installation action.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @return null Aborts early if we're processing a plugin installation action.
-		 */
 		public function install_plugins_page() {
 			// Store new instance of plugin table in object.
 			$plugin_table = new TGMPA_List_Table;

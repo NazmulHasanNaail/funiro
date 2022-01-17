@@ -29,13 +29,27 @@
 			endif;  
 
 			$footer_bottom_hide = get_theme_mod('funiro_hide_footer_copyright', true);
-			$footer_copyright_text = get_theme_mod('funiro_footer_copyright_text', '&copy; 2021 Namul hasan, All right reserved.');
+			$footer_copyright_text = get_theme_mod('funiro_footer_copyright_text');
             if(empty($footer_bottom_hide)): ?>
 			<div class="footer-bottom">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="site-info text-center">
-							<?php echo $footer_copyright_text ; ?>
+						<?php 
+						if( $footer_copyright_text ) : ?>
+                            <p><?php echo wp_kses_post( $footer_copyright_text ); ?> </p>
+                    <?php else : ?>
+                            <p>
+								<?php
+								printf( __( 'Proudly powered by', 'funiro' ) );
+								?>
+								<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'funiro' ) ); ?>" class="imprint">
+									<?php
+									printf( __( 'WordPress', 'funiro' ) );
+									?>
+								</a>
+                            </p>
+                            <?php endif ; ?> 
 						</div><!-- .site-info -->
 					</div>
 				</div>
