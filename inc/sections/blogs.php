@@ -1,8 +1,8 @@
 <?php
 function blogs_section( $atts, $content = null ) {
 	$services = shortcode_atts( array(
-		'attr_1' => 'attribute 1 default',
-		'attr_2' => 'attribute 2 default',
+		'show' => '',
+		'id' => 0,
 		// ...etc
 	), $atts );
 
