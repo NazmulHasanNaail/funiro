@@ -299,6 +299,9 @@ ul.products li.product .add_to_wishlist:hover{
 }
 /*woocommrce product share */
 .product-social-share{
+	margin: 0;
+	padding: 0;
+	list-style: none;
 	margin-top: 10px;
     position: absolute;
     left: 15%;
@@ -415,14 +418,19 @@ ul.products li.product:hover  .product-social-share{
 	z-index: 2;
 }
 ul.products li.product .button {
+	top: 0;
+}
+ul.products li.product:hover .button{
 	top: 40%;
 }
 .woocommerce a.added_to_cart{
-	top: 25%;
+	top: 0;
 	background: var(--primary);
 	color: var(--color-white);
 }
-
+ul.products li.product:hover a.added_to_cart{
+	top: 25%;
+}
 /*sale tag*/
 .onsale{
 	position: absolute;
