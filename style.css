@@ -737,7 +737,7 @@ span.selection .select2-selection.select2-selection--single{
 	vertical-align: middle;
 }
 .site-branding h1 {
-	margin-bottom: 0;
+	margin-bottom: 10px;
 	vertical-align: middle;
 	line-height: 0;
 }
@@ -746,6 +746,9 @@ span.selection .select2-selection.select2-selection--single{
 	font-weight: 700;
 	color: var(--color-black);
 	vertical-align: middle;
+}
+.site-description{
+	margin-bottom: 0;
 }
 
 /* Tablet desktop */

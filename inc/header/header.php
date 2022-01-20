@@ -13,14 +13,21 @@ $active_sticky = get_theme_mod('funiro_header_tstyle', true);
             <div class="site-branding">
                 <?php
                 the_custom_logo();
-                    ?>
+                $site_title_enable = get_theme_mod('funiro_title_disable', true);
+                $site_tagline_enable = get_theme_mod('funiro_tagline_disable', true);
+
+                if($site_title_enable ):
+                ?>
                     <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-                    <?php
+                <?php
+                endif;
+
                 $funiro_description = get_bloginfo( 'description', 'display' );
-                if ( $funiro_description || is_customize_preview() ) :
+                if ($site_tagline_enable == true ) :
                     ?>
-                    <p class="site-description"><?php echo $funiro_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+                    <p class="site-description"><?php echo esc_html( $funiro_description, 'funiro') ; ?></p>
                 <?php endif; ?>
+
             </div><!-- .site-branding -->
             <nav id="site-navigation" class="main-navigation">
             <?php

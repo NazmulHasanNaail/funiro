@@ -165,6 +165,7 @@ function funiro_customize_register( $wp_customize ) {
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/rooms.php');
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/blogs.php');
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/front-page/share_setup.php');
+		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/site_identity.php');
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/blog.php');
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/sidebar.php');
 		require ( FUNIRO_TEMPLATE_DIR . '/inc/customizer/custom-style.php');
