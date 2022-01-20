@@ -558,6 +558,7 @@ span.selection .select2-selection.select2-selection--single{
 
 .funiro-header_area nav ul{
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: row;
 	padding-left: 20px;
 	padding-right: 20px;
@@ -574,7 +575,8 @@ span.selection .select2-selection.select2-selection--single{
 }
 
 
-.menu-item-has-children >a::after{
+.menu-item-has-children >a::after,
+.page_item_has_children >a::after {
 	content: "\f078";
 	font-family: "Font Awesome 5 Free"; 
 	font-weight: 900;
@@ -589,31 +591,31 @@ span.selection .select2-selection.select2-selection--single{
 
 }
 .menu-item-has-children .sub-menu,
-.menu-item-has-children .children{
+.page_item_has_children .children{
 	background-color: var(--primary-2);
     visibility: hidden;
     display: block;
+	padding: 10px;
     opacity: 0;
     filter: alpha(opacity=0);
-    -webkit-transition: all 0.35s ease-out 0s;
-    -o-transition: all 0.35s ease-out 0s;
-    transition: all 0.35s ease-out 0s;
+    transition: all 0.35s ease-out;
 	position: absolute;
-	top: 100%;
+	top: 0;
 	height: 0;
+	box-shadow: 1px 1px 3px rgb(80 80 80 / 10%);
 }
 .menu-item-has-children .sub-menu a,
-.menu-item-has-children .children a{
+.page_item_has_children .children a{
 	padding: 10px 0;
 	width: 200px;
 	text-align: left;
 }
 .menu-item-has-children:hover > .sub-menu,
-.menu-item-has-children:hover > .children{
+.page_item_has_children:hover > .children{
 	visibility: visible;
 	opacity: 1;
+	top: 100%;
 	height: auto;
-	padding: 10px;
 }
 .funiro-header_area nav ul li a:hover{
 	color: var(--color-black);
@@ -658,6 +660,7 @@ span.selection .select2-selection.select2-selection--single{
 .themeoo-menu-area{
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	position: relative;
 	flex-wrap: wrap;
 }
