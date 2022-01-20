@@ -23,6 +23,11 @@ function funiro_register_required_plugins() {
 			'slug'        => 'mailchimp-for-wp',
 			'required'  => false,
 		),
+		array(
+			'name'        => 'YITH WooCommerce Wishlist',
+			'slug'        => 'yith-woocommerce-wishlist',
+			'required'  => false,
+		),
 
 	);
 

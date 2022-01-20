@@ -332,7 +332,6 @@ add_filter('post_class', function($classes, $class, $product_id) {
  */ 
 if ( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_get_items_count' ) ) {
 	function yith_wcwl_get_items_count() {
-	  ob_start();
 	  ?>
 		<div class="wishlist">		
 			<a href="<?php echo esc_url( YITH_WCWL()->get_wishlist_url() ); ?>" class="wishlist-content">
@@ -345,11 +344,10 @@ if ( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_get_items_count' ) 
 			</a>
 		</div>
 	  <?php
-	  return ob_get_clean();
 	}
-  
-	add_shortcode( 'yith_wcwl_items_count', 'yith_wcwl_get_items_count' );
+
   }
+  
   
   if ( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_ajax_update_count' ) ) {
 	function yith_wcwl_ajax_update_count() {

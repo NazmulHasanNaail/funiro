@@ -9,9 +9,9 @@
 	$(window).on('scroll', function () {
 		var scroll = $(window).scrollTop();
 		if (scroll < 100) {
-			$(".funiro-header_area").removeClass("sticky");
+			$(".active_sticky").removeClass("sticky");
 		} else {
-			$(".funiro-header_area").addClass("sticky");
+			$(".active_sticky").addClass("sticky");
 		}
 	});
 

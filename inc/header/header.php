@@ -1,5 +1,9 @@
+<?php
+$active_sticky = get_theme_mod('funiro_header_tstyle', true);
+?>
+
 <!---header-start-->
-<header class="site-header funiro-header_area" id="masthead">
+<header class="site-header funiro-header_area  <?php echo $active_sticky? 'active_sticky' : '' ?>" id="masthead">
     <div class="container">
         <div class="themeoo-menu-area">
             <div class="hamburger-menu">
@@ -34,23 +38,39 @@
             </div>
             <!--header-search-->
             <div class="d-flex header-right-area justify-content-end align-items-center">
-                <?php  echo do_shortcode('[yith_wcwl_items_count]'); ?>
+                <?php
+                 if ( defined( 'YITH_WCWL' ) && class_exists( 'WooCommerce' ) ){ 
+                    yith_wcwl_get_items_count();
+                }
+            
+                if ( class_exists( 'WooCommerce' ) ){   
+                ?>
                 <div class="cart">
-                  <?php 
-                  if ( class_exists( 'WooCommerce' ) ){                  
+                  <?php                 
                       funiro_woocommerce_header_cart(); 
-                    } ?>
+                    ?>
                 </div>
                 <?php
+                 }
+
+
                 $user = wp_get_current_user();
-                if ( $user ) :?>
+
+                if ( class_exists( 'WooCommerce' ) ){  
+                    $author_link =  get_permalink( get_option('woocommerce_myaccount_page_id') );
+                 }else{
+                    $author_link = get_author_posts_url( get_current_user_id() );
+                 }
+
+                 if( $user ) :
+                ?>
                 <div class="current-user">
-                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">
+                    <a href="<?php echo  $author_link; ?>">
                       <img src="<?php echo esc_url( get_avatar_url( $user->ID, ['size' => '40'] ) ); ?>" alt="<?php echo esc_attr('current user ')?>"/>
                     </a>
                 </div>
                 <?php 
-                endif; 
+                endif;
                 ?>
             </div>
             <!--header-right-->

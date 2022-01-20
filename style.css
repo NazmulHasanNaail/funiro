@@ -62,6 +62,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	--primary : #e89f71;
 	--primary-2 : #FCF8F3;
 
+	--heading : #3a3a3a;
+	--body-color : #898989;
+
 	--color-1 : #3a3a3a;
 	--color-2 : #616161;
 	--color-3 : #898989;
@@ -78,6 +81,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	--funiro-fs-20 : 20px;
 	--funiro-fs-24 : 24px;
 	--funiro-fs-28 : 28px;
+	--funiro-fs-32 : 32px;
 	--funiro-fs-40 : 40px;
 	--funiro-fs-56 : 56px;
 
@@ -101,37 +105,33 @@ body{
 	background-color:var(--color-white);
 	font-size:var(--funiro-fs-16);
 	font-weight: var(--funiro-fw-500);
-	line-height:24px;
-	color:var(--color-3);
+	color:var(--body-color);
 	-ms-word-wrap:break-word; 
 	word-wrap:break-word;
+	word-break: break-word;
 }
 
-ul,ol{
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
-li{
-	list-style: none;
-}
 h1,h2,h3,h4,h5,h6,
 h1 a,h2 a,h3 a,h4 a ,h5 a,h6 a{
-	color: var(--color-1);
+	color: var(--heading);
 }
 h1{
 	font-size: var(--funiro-fs-56);
 }
 h2{
 	font-size: var(--funiro-fs-40);
-	font-weight: var(--funiro-fw-700);
+}
+h3{
+	font-size: var(--funiro-fs-32);
 }
 h4{
 	font-size: var(--funiro-fs-28);
-	font-weight: var(--funiro-fw-600);
 }
 h5{
 	font-size: var(--funiro-fs-24);
+}
+
+h2,h3,h4,h5,h6{
 	font-weight: var(--funiro-fw-600);
 }
 a{
@@ -534,15 +534,19 @@ span.selection .select2-selection.select2-selection--single{
 	margin-top: 32px;
 }
 .funiro-header_area {
-	padding-top: 40px;
-	width: 100%;
-	z-index: 9;
-	background-color: transparent;
-	transition:0.3s;
-	position: fixed;
+	position: absolute;
 	left: 0;
 	right: 0;
 	top: 0;
+	width: 100%;
+	z-index: 9;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: transparent;
+	transition:0.3s;
+}
+.funiro-header_area.active_sticky{
+	position: fixed;
 }
 
 .funiro-header_area.sticky{
@@ -557,6 +561,8 @@ span.selection .select2-selection.select2-selection--single{
 	flex-direction: row;
 	padding-left: 20px;
 	padding-right: 20px;
+	list-style: none;
+	margin: 0;
 }
 .funiro-header_area nav ul li a{
 	color: var(--color-1);
@@ -582,7 +588,8 @@ span.selection .select2-selection.select2-selection--single{
 	margin-left: 10px;
 
 }
-.menu-item-has-children .sub-menu{
+.menu-item-has-children .sub-menu,
+.menu-item-has-children .children{
 	background-color: var(--primary-2);
     visibility: hidden;
     display: block;
@@ -595,12 +602,14 @@ span.selection .select2-selection.select2-selection--single{
 	top: 100%;
 	height: 0;
 }
-.menu-item-has-children .sub-menu a{
+.menu-item-has-children .sub-menu a,
+.menu-item-has-children .children a{
 	padding: 10px 0;
 	width: 200px;
 	text-align: left;
 }
-.menu-item-has-children:hover > .sub-menu{
+.menu-item-has-children:hover > .sub-menu,
+.menu-item-has-children:hover > .children{
 	visibility: visible;
 	opacity: 1;
 	height: auto;
@@ -694,6 +703,9 @@ span.selection .select2-selection.select2-selection--single{
 }
 .header-right-area{
 	margin-left: 15px;
+}
+.header-right-area ul{
+	list-style: none;
 }
 .header-right-area .wishlist,
 .header-right-area .current-user{
@@ -875,7 +887,6 @@ article.blog-posts .post-thumbnail{
 	overflow: hidden;
 }
 article.blog-posts .post-thumbnail img{
-	width: 100%;
 	transition: 0.3s ease-in-out;
 }
 article.blog-posts .entry-content{
@@ -956,6 +967,11 @@ nav a.page-numbers:hover{
 .comment-respond{
 	margin-top: 30px;
 }
+.comments-area ol{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 .comments-area .comment-list li.depth-1>.comment-body{
 	background-color: var(--primary-2);
 	padding: 10px;
@@ -968,7 +984,7 @@ nav a.page-numbers:hover{
 	margin-bottom: 30px;
 }
 .comments-area .comment-list li ol{
-	margin-left: 15px;
+	margin-left: 30px;
 }
 .comment-meta {
 	padding-bottom: 10px;
@@ -1005,6 +1021,11 @@ nav a.page-numbers:hover{
 	padding-left: 20px;
 	padding-right: 20px;
 }
+.widget ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 .sidebar .widget{
 	margin-bottom: 40px;
 	padding: 20px;
@@ -1015,6 +1036,7 @@ nav a.page-numbers:hover{
 .sidebar .widget.widget_categories li,
 .sidebar .widget.widget_nav_menu li{
 	padding-left: 15px;
+	list-style: none;
 }
 .sidebar .widget.widget_recent_entries a,
 .sidebar .widget.widget_archive a,
@@ -1094,6 +1116,18 @@ nav a.page-numbers:hover{
 	border-radius: 0;
 	margin-left: 2px;
 }
+/*tagcloud widget*/
+.widget_tag_cloud .tag-cloud-link {
+	display: inline-block;
+	padding: 3px; 
+	margin: 2px;
+	text-decoration: none; 
+	border: 1px solid var(--color-2); 
+	line-height: 1;
+  }
+  .widget_tag_cloud .tag-cloud-link:hover{
+	  border-color: var(--primary);
+  }
 
 /*--------------------------------------------------------------
   Banner 

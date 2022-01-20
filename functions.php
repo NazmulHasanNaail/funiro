@@ -58,9 +58,7 @@ if ( ! function_exists( 'funiro_setup' ) ) :
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
 		 */
-		add_theme_support(
-			'html5',
-			array(
+		add_theme_support( 'html5', array(
 				'search-form',
 				'comment-form',
 				'comment-list',
@@ -68,20 +66,8 @@ if ( ! function_exists( 'funiro_setup' ) ) :
 				'caption',
 				'style',
 				'script',
-			)
-		);
+		));
 
-		// Set up the WordPress core custom background feature.
-		add_theme_support(
-			'custom-background',
-			apply_filters(
-				'funiro_custom_background_args',
-				array(
-					'default-color' => 'ffffff',
-					'default-image' => '',
-				)
-			)
-		);
 
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
@@ -145,7 +131,7 @@ require ( FUNIRO_TEMPLATE_DIR . '/inc/scripts/scripts.php');
 /**
  * Implement the Custom Header feature.
  */
-require ( FUNIRO_TEMPLATE_DIR . '/inc/custom-header.php');
+require ( FUNIRO_TEMPLATE_DIR . '/inc/custom-style.php');
 /**
  * Implement the Breadcrumbs feature.
  */
@@ -200,5 +186,3 @@ if ( class_exists( 'WooCommerce' ) ) {
  * Load Welcome-bar compatibility file.
  */
 require ( FUNIRO_TEMPLATE_DIR . '/inc/welcome-bar/welcome-bar.php');
-
-
