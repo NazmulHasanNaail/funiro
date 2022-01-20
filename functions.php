@@ -50,7 +50,7 @@ if ( ! function_exists( 'funiro_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'menu-1' => esc_html__( 'Primary', 'funiro' ),
+				'primary-menu' => esc_html__( 'Primary Menu', 'funiro' ),
 			)
 		);
 
