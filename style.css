@@ -706,7 +706,9 @@ span.selection .select2-selection.select2-selection--single{
 }
 .header-right-area{
 	margin-left: 15px;
+	margin-right: 15px;
 }
+
 .header-right-area ul{
 	list-style: none;
 }
@@ -730,6 +732,9 @@ span.selection .select2-selection.select2-selection--single{
 	.header-right-area .wishlist,
 	.header-right-area .current-user{
 		display: block;
+	}
+	.header-right-area{
+		margin-right: 0;
 	}
 }
 .site-branding {
@@ -949,6 +954,9 @@ nav.navigation.pagination{
 .woocommerce-pagination ul.page-numbers{
 	display: flex;
 	justify-content: center;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 	margin-top: 40px;
 }
 nav a.page-numbers,
@@ -1462,14 +1470,8 @@ nav a.page-numbers:hover{
 .funiro-blogs-area .absolute-slider-content a.btn{
 	display: none;
 }
-.funiro-blogs-slider-wpapper{
-	margin-left: -32px;
-	margin-right: -32px;
-}
 .funiro-blogs-area .swiper-container {
 	padding-bottom: 78px;
-	padding-left: 32px;
-	padding-right: 32px;
 }
 .funiro-blogs-area .swiper-slide{
 	background-color: var(--color-white);
@@ -1479,7 +1481,16 @@ nav a.page-numbers:hover{
 	box-shadow: 0px 18px 18px 8px rgba(97, 97, 97, 0.1);
 	transform: translateY(-2px);
 }
-
+@media (min-width: 768px){
+	.funiro-blogs-slider-wpapper{
+		margin-left: -32px;
+		margin-right: -32px;
+	}
+	.funiro-blogs-area .swiper-container {
+		padding-left: 32px;
+		padding-right: 32px;
+	}
+}
 /*--------------------------------------------------------------
   Services 
 --------------------------------------------------------------*/
