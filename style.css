@@ -565,6 +565,9 @@ span.selection .select2-selection.select2-selection--single{
 	list-style: none;
 	margin: 0;
 }
+.funiro-header_area nav li{
+	position: relative;
+}
 .funiro-header_area nav ul li a{
 	color: var(--color-1);
 	padding: 10px 20px;
@@ -603,6 +606,9 @@ span.selection .select2-selection.select2-selection--single{
 	top: 0;
 	height: 0;
 	box-shadow: 1px 1px 3px rgb(80 80 80 / 10%);
+}
+.sub-menu .sub-menu{
+	left: 100%;
 }
 .menu-item-has-children .sub-menu a,
 .page_item_has_children .children a{
