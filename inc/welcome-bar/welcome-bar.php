@@ -27,6 +27,9 @@ function funiro_started_admin_notice() {
         printf( '<a href="%1$s" class="notice-dismiss dashicons dashicons-dismiss dashicons-dismiss-icon"></a>', '?' . esc_html( $theme_data->get( 'TextDomain' ) ) . '_notice_ignore=0' );
         ?>
       </p>
+      <p>
+        download demo data <a href="https://github.com/NazmulHasanNaail/funiro-demo/archive/refs/heads/main.zip">click here</a>
+      </p>
     </div>
     <?php
   }
